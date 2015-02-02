@@ -42,6 +42,7 @@ void main() {
 }
 
 void onKeyDown(KeyEvent keyEvent) {
+  print (keyEvent.keyCode);
   if (textarea.selectionEnd == 0) return;
 
   //if modKeyDown, create popup, or select next char in popup
