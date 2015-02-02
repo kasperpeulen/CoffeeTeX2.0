@@ -25,8 +25,9 @@ Storage local = window.localStorage;
 StreamSubscription listen;
 StreamSubscription listenBody;
 
-List modKey = [KeyCode.WIN_KEY_RIGHT,KeyCode.CONTEXT_MENU,KeyCode.CTRL];
+List modKey = [KeyCode.WIN_KEY_RIGHT,KeyCode.CONTEXT_MENU];
 List modKey2 = [KeyCode.ALT];
+List modKey3 = [KeyCode.TAB,KeyCode.CTRL];
 
 void main() {
   print(KeyCode.MAC_FF_META);
@@ -52,6 +53,9 @@ void onKeyDown(KeyEvent keyEvent) {
     if (popup == null)
       createPopUp();
     else
+      selectNextChar();
+  }
+  else if (modKey3.contains(keyEvent.keyCode) && popup != null){
       selectNextChar();
   }
   //if modKey2 down, expand selection to the left
