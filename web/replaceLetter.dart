@@ -1,7 +1,10 @@
 library replaceLetter;
 import 'dart:html';
 
-Map replaceLetter = {
+Map replaceLetterDefault = {
+    'weier' :
+    ['⁅∑_{n=1}^∞ f_{n} " uniform convergent op \$A\$" ↵ \n⇑ ↵\n∃(a_{n})>0 : ↵\n|f_{n}(z)|≤a_{n} ▭∀z∈A\  ∀n∈ℕ ↵\n∑_{n=1}^∞ a_{n} " is convergent"⁆'],
+
     '>': ['≥','⟩','⊇','⊃','→','↦','⇒','⟹','⊳','\u27F5'],
     '=>' : ['⇑','⇓','⇕','⇒','⟹','⟺','⇔'],
     'A': ['𝐴','∀','𝒜','𝔄'],
@@ -41,7 +44,7 @@ Map replaceLetter = {
     'h': ['η','𝔥','†','♡','♥'],
     'i': ['∈','∉','∞','ι','∫','∋','∌','∩'],
     'j': ['𝔧'],
-    'k': ['𝑘','κ'],
+    'k': ['kasperpeulen@gmail.com','𝑘','κ'],
     'l': ['λ','ℓ','𝔩'],
     'm': ['μ','𝔪'],
     'n': ['ν','𝔫','¬','∇'],
@@ -94,3 +97,6 @@ Map replaceLetter = {
     */
 };
 
+Map replaceLetterAfter = {
+  "e-mail" : "kasperpeulen@gmail.com"
+};

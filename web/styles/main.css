@@ -20,17 +20,10 @@ textarea {
 }
 
 #char_list {
-    margin:0px;
-    padding:0px;
-    display: inline;
-    list-style-type: none;
 }
 
 #char_list li {
-    margin:0px;
-    padding:0px;
-    display: inline;
-    list-style-type: none;
+
 }
 
 #popup {
@@ -38,7 +31,9 @@ textarea {
     position: absolute;
 }
 
-#char_list {;
+#char_list {
+    margin:0px;
+    list-style-type: none;
     -moz-box-shadow: 0px 1px 3px 1px lightgray;
     -webkit-box-shadow: 0px 1px 3px 1px lightgray;
     box-shadow: 0px 2px 3px 0px lightgrey;
@@ -48,11 +43,15 @@ textarea {
     font-size: 12pt;
     border: 1px #C1D7FD solid;
     list-style-type: none;
-    display: inline-block;
     border-radius: 5px;
 
 }
-#char_list  li {;
+#char_list  li {
+    margin:0px;
+    padding:0px;
+    display: inline-block;
+    //text-align: left !important;
+    list-style-type: none;
     position: relative;
     line-height: 21px;
     border: 1px white solid;
@@ -62,7 +61,6 @@ textarea {
     padding-bottom: 8px;
     color: #0A7ED0;
     text-align: center;
-    display: inline-block;
     min-width: 24px;
 }
 #char_list p{
@@ -74,6 +72,12 @@ textarea {
     border: 1px #B9D6F0 solid;
     background: #E5F1FE;
     color: #0A7ED0;
+}
+
+#changeChar {
+    width: 100px;
+    font-size: 16px;
+    font-family: LMMath-bbfix;
 }
 
 @font-face {
