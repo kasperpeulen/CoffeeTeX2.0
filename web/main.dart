@@ -56,6 +56,7 @@ void onKeyDown(KeyEvent keyEvent) {
       selectNextChar();
   }
   else if (modKey3.contains(keyEvent.keyCode) && popup != null){
+      keyEvent.preventDefault();
       selectNextChar();
   }
   //if modKey2 down, expand selection to the left

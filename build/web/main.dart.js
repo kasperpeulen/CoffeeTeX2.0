@@ -7788,9 +7788,10 @@ var $$ = Object.create(null);
         F.createPopUp();
       else
         F.selectNextChar();
-    } else if (C.JSArray_methods.contains$1($.get$modKey3(), keyEvent.keyCode) && $.popup != null)
+    } else if (C.JSArray_methods.contains$1($.get$modKey3(), keyEvent.keyCode) && $.popup != null) {
+      keyEvent.preventDefault();
       F.selectNextChar();
-    else if (C.JSArray_methods.contains$1($.get$modKey2(), keyEvent.keyCode)) {
+    } else if (C.JSArray_methods.contains$1($.get$modKey2(), keyEvent.keyCode)) {
       keyEvent.preventDefault();
       t1 = $.get$textarea();
       t2 = J.getInterceptor$x(t1);
