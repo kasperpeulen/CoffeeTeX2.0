@@ -16,7 +16,7 @@ String oldChars;
 List newChars;
 num selectedCharIndex = 0;
 num lastCharIndex;
-var caretStart,caretEnd;
+int caretStart,caretEnd;
 Map caret_XY;
 
 Map replaceLetter;
@@ -43,36 +43,50 @@ void main() {
 }
 
 void onKeyDown(KeyEvent keyEvent) {
-  print (keyEvent.keyCode);
-  //coment
   if (textarea.selectionEnd == 0) return;
 
-  //if modKeyDown, create popup, or select next char in popup
-  if (modKey.contains(keyEvent.keyCode)) {
-    keyEvent.preventDefault();
-    if (popup == null)
+  var keyCode = keyEvent.keyCode;
+
+  //if no popup exists
+  if (popup == null){
+    if (modKey.contains(keyCode) || modKey2.contains(keyCode) ){
       createPopUp();
-    else
-      selectNextChar();
+    }
   }
-  else if (modKey3.contains(keyEvent.keyCode) && popup != null){
+  //if popup already exists
+  else {
+    if (modKey.contains(keyCode) || modKey3.contains(keyCode) || keyCode == KeyCode.RIGHT || keyCode == KeyCode.DOWN) {
       keyEvent.preventDefault();
-      selectNextChar();
-  }
-  //if modKey2 down, expand selection to the left
-  else if (modKey2.contains(keyEvent.keyCode)){
-    keyEvent.preventDefault();
-    textarea.selectionStart += -1;
-    if (popup != null) removePopUp();
-    createPopUp();
-  }
-  //if popUp, and no modkey, remove the popup
-  else if (popup != null) {
-    if (keyEvent.keyCode == KeyCode.ENTER)
+      selectCharIndex(selectedCharIndex + 1);
+    }
+    else if (keyCode == KeyCode.LEFT || keyCode == KeyCode.UP) {
       keyEvent.preventDefault();
-    if (keyEvent.keyCode != KeyCode.ESC && newChars.length != 0)
-      replaceChar();
-    removePopUp();
+      selectCharIndex(selectedCharIndex - 1);
+    }
+    else if (modKey2.contains(keyCode)) {
+        keyEvent.preventDefault();
+        textarea.selectionStart += -1;
+        removePopUp();
+        createPopUp();
+      }
+      else if (keyCode == KeyCode.SPACE){
+          keyEvent.preventDefault();
+          createNewCharInput("changeChar");
+        }
+      else if (newChars.length == 0){
+          removePopUp();
+        }
+        else if (keyCode != KeyCode.ESC){
+            removePopUp();
+            replaceChar();
+          }
+          else{
+            removePopUp();
+          }
+
+    if (keyCode == KeyCode.ENTER ){
+      keyEvent.preventDefault();
+    }
   }
 }
 
@@ -119,7 +133,6 @@ void createPopUp() {
     //createNewCharInput(null);
   }
 
-
   //make an addNewChar button at the end of the list
   LIElement addChar = new LIElement()
     ..style.minWidth = "5px"
@@ -127,6 +140,9 @@ void createPopUp() {
   char_list.append(addChar);
   addChar.onMouseEnter.listen(addNewChar);
 
+  //remember caret position
+  caretStart = textarea.selectionStart;
+  caretEnd = textarea.selectionEnd;
   /*
   if (newChars.length == 1){
     removePopUp();
@@ -143,19 +159,12 @@ removePopUp(){
   char_list = null;
 }
 
-selectNextChar(){
-  if (selectedCharIndex == char_list.children.length -2)
-    selectCharIndex(0);
-  else
-    selectCharIndex(selectedCharIndex+1);
-}
-
 selectCharIndex(i) {
-  if (char_list.children.length < (i+1))
-    return;
 
-  if ((selectedCharIndex) > (char_list.children.length -2))
+  if (i == (char_list.children.length -1))
     i = 0;
+  else if (i == -1)
+    i = char_list.children.length -2;
 
   //remove the selected class, and add it to child i
   if (selected != null) selected.classes.remove('selected');
@@ -165,15 +174,16 @@ selectCharIndex(i) {
 
   //remove old listener, and add listener to selectedLI
   if (listen != null) listen.cancel();
-  listen = selected.onMouseEnter.listen(createNewCharInput);
+  listen = selected.onMouseEnter.listen(inputMouseEnter);
 }
 
 replaceChar() {
   //replace oldChar with newChar and fix caretPos
-  var newChar, dCaretPos;
+  var newChar;
+  String dCaretPos;
   if (newChars[selectedCharIndex] is String) {
     newChar = newChars[selectedCharIndex];
-    dCaretPos = 0;
+    dCaretPos = "0";
   }
   else {
     newChar = newChars[selectedCharIndex][0];
@@ -196,27 +206,56 @@ replaceChar() {
   textarea.value = newText.join("");
 
   //fix caretPos
-  var newCaretPos = textarea.selectionEnd + dCaretPos + newChar.length - 1;
+  int newCaretPos = caretEnd + int.parse(dCaretPos) + newChar.length - 1;
   textarea.setSelectionRange(newCaretPos,newCaretPos);
 }
 
-createNewCharInput(MouseEvent e){
 
-  //remember caret position
-  caretStart = textarea.selectionStart;
-  caretEnd = textarea.selectionEnd;
+inputMouseEnter(MouseEvent e){
+  createNewCharInput("changeChar");
+}
+
+createNewCharInput(String id){
+
   listenBody.pause();
+
+  var value;
+
+  if (newChars.length == 0 || selectedCharIndex == newChars.length){
+    value = "";
+  }
+
+  else if (id == "changeCaret"){
+    if (newChars[selectedCharIndex] is String){
+      newChars[selectedCharIndex] = [newChars[selectedCharIndex],"0"];
+    }
+    value = newChars[selectedCharIndex][1];
+  }
+  else{
+    if (newChars[selectedCharIndex] is String){
+      value = selected.text;
+    }
+    else{
+      value = newChars[selectedCharIndex][0];
+    }
+  }
 
   //create input to type new chars
   newCharInput = new InputElement();
-  newCharInput ..id = "changeChar"
-        ..type = "text"
-        ..value = selected.text
-        ..style.width = selected.getComputedStyle().width
-        ..onKeyUp.listen(inputKeyUp);
-  selected ..children.clear()
-          ..append(newCharInput)
-          ..onMouseLeave.listen(inputMouseLeave);
+  newCharInput
+    ..id = id
+    ..type = "text"
+    ..value = value
+    ..style.width = selected.getComputedStyle().width
+    ..onKeyUp.listen(inputKeyUp)
+    ..onKeyDown.listen((keyDown) {if (keyDown.keyCode == KeyCode.TAB) keyDown.preventDefault();});
+  selected
+    ..children.clear()
+    ..append(newCharInput)
+    ..onMouseLeave.listen(inputMouseLeave);
+  newCharInput
+    ..select()
+    ..setSelectionRange(0,0);
 }
 
 inputMouseLeave(MouseEvent e){
@@ -231,7 +270,14 @@ updateChar() {
 
   //update char in selected List element
   var updatedChar = newCharInput.value;
-  selected.text = updatedChar;
+
+  var i;
+  if (newCharInput.id == "changeChar"){
+    i = 0;
+  }
+  else{
+    i = 1;
+  }
 
   //if updateChar is empty, remove selected from list
   if (updatedChar  == "") {
@@ -241,28 +287,43 @@ updateChar() {
   else {
     //if it is the first Char
     if (newChars.length == 0){
-      replaceLetter[oldChars] = [updatedChar];
+      replaceLetter[oldChars] = [[updatedChar,"0"]];
       newChars = replaceLetter[oldChars];
+      selected.text = updatedChar;
     }
     //if char is just added
     else if (selected.classes.contains("new")) {
-      replaceLetter[oldChars].add(updatedChar);
+      if (i == 0) {
+        replaceLetter[oldChars].add([updatedChar, "0"]);
+        selected.text = updatedChar;
+      }
+      else
+        replaceLetter[oldChars].add(["",updatedChar]);
       selected.classes.remove("new");
     }
     else {
-      replaceLetter[oldChars][selectedCharIndex] = updatedChar;
+      if (replaceLetter[oldChars][selectedCharIndex] is String){
+        replaceLetter[oldChars][selectedCharIndex] = updatedChar;
+        selected.text = updatedChar;
+      }
+      else {
+        replaceLetter[oldChars][selectedCharIndex][i] = updatedChar;
+        selected.text = replaceLetter[oldChars][selectedCharIndex][0];
+      }
     }
+
+
   }
   //update to localstorage;
   local["replaceLetter3"] = JSON.encode(replaceLetter);
-
   //remove input
   newCharInput.remove();
   listenBody.resume();
+
 }
 
-inputKeyUp(KeyEvent keyEvent){
-
+inputKeyUp(KeyboardEvent e){
+  print([e.keyCode,KeyCode.TAB]);
   //hack to properly resize input width
 
   SpanElement span = new SpanElement()
@@ -272,9 +333,21 @@ inputKeyUp(KeyEvent keyEvent){
   span.remove();
 
   //updatechar when press enter
-  if (keyEvent.keyCode == KeyCode.ENTER) {
-    keyEvent.preventDefault();
+  if (e.keyCode == KeyCode.ENTER) {
+    e.preventDefault();
     updateChar();
+  }
+
+  else if (e.keyCode == KeyCode.TAB){
+    print(10);
+    e.preventDefault();
+    updateChar();
+    if (newCharInput.id == "changeCaret"){
+      createNewCharInput("changeChar");
+    }
+    else if (newCharInput.id == "changeChar"){
+      createNewCharInput("changeCaret");
+    }
   }
 }
 

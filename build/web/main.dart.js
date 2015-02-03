@@ -405,7 +405,7 @@ var $$ = Object.create(null);
       return list.join(separator);
     },
     elementAt$1: function(receiver, index) {
-      if (index < 0 || index >= receiver.length)
+      if (index >>> 0 !== index || index >= receiver.length)
         return H.ioore(receiver, index);
       return receiver[index];
     },
@@ -451,6 +451,8 @@ var $$ = Object.create(null);
       return receiver.length;
     },
     set$length: function(receiver, newLength) {
+      if (typeof newLength !== "number" || Math.floor(newLength) !== newLength)
+        throw H.wrapException(P.ArgumentError$(newLength));
       if (newLength < 0)
         throw H.wrapException(P.RangeError$value(newLength, null, null));
       this.checkGrowable$1(receiver, "set length");
@@ -1907,6 +1909,8 @@ var $$ = Object.create(null);
     throw H.wrapException(P.RangeError$value(index, null, null));
   },
   checkString: function(value) {
+    if (typeof value !== "string")
+      throw H.wrapException(P.ArgumentError$(value));
     return value;
   },
   wrapException: function(ex) {
@@ -3111,7 +3115,7 @@ var $$ = Object.create(null);
     elementAt$1: function(_, index) {
       var realIndex, t1;
       realIndex = this.get$_startIndex() + index;
-      if (index >= 0) {
+      if (!(index < 0)) {
         t1 = this.get$_endIndex();
         if (typeof t1 !== "number")
           return H.iae(t1);
@@ -3333,7 +3337,7 @@ var $$ = Object.create(null);
     var t1, t2;
     for (; t1 = $._nextCallback, t1 != null;) {
       $._lastPriorityCallback = null;
-      t2 = t1.get$next();
+      t2 = t1.next;
       $._nextCallback = t2;
       if (t2 == null)
         $._lastCallback = null;
@@ -3932,7 +3936,7 @@ var $$ = Object.create(null);
     }
   },
   _AsyncCallbackEntry: {
-    "^": "Object;callback,next<",
+    "^": "Object;callback,next",
     callback$0: function() {
       return this.callback.call$0();
     }
@@ -5060,7 +5064,7 @@ var $$ = Object.create(null);
     },
     elementAt$1: function(_, index) {
       var t1, remaining, element;
-      if (index < 0)
+      if (typeof index !== "number" || Math.floor(index) !== index || index < 0)
         throw H.wrapException(P.RangeError$value(index, null, null));
       for (t1 = this.get$iterator(this), remaining = index; t1.moveNext$0();) {
         element = t1.get$current();
@@ -5923,9 +5927,9 @@ var $$ = Object.create(null);
           if (typeof t1 !== "number")
             return H.iae(t1);
           if (t2 > t1)
-            explanation = ": Not in range " + t1 + ".." + t2 + ", inclusive.";
+            explanation = ": Not in range " + H.S(t1) + ".." + H.S(t2) + ", inclusive.";
           else
-            explanation = t2 < t1 ? ": Valid value range is empty" : ": Only valid value is " + t1;
+            explanation = t2 < t1 ? ": Valid value range is empty" : ": Only valid value is " + H.S(t1);
         }
       }
       return "RangeError: " + H.S(this.message) + " (" + H.S(value) + ")" + explanation;
@@ -6022,7 +6026,9 @@ var $$ = Object.create(null);
   FormatException: {
     "^": "Object;message,source,offset",
     toString$0: function(_) {
-      var report = "" !== this.message ? "FormatException: " + this.message : "FormatException";
+      var t1, report;
+      t1 = this.message;
+      report = t1 != null && "" !== t1 ? "FormatException: " + H.S(t1) : "FormatException";
       return report;
     },
     static: {FormatException$: function(message, source, offset) {
@@ -6327,6 +6333,9 @@ var $$ = Object.create(null);
     toString$0: function(receiver) {
       return receiver.localName;
     },
+    get$onKeyDown: function(receiver) {
+      return H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(receiver, "keydown", false), [null]);
+    },
     get$onKeyUp: function(receiver) {
       return H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(receiver, "keyup", false), [null]);
     },
@@ -6387,7 +6396,7 @@ var $$ = Object.create(null);
       throw H.wrapException(P.UnsupportedError$("Cannot resize immutable List."));
     },
     elementAt$1: function(receiver, index) {
-      if (index < 0 || index >= receiver.length)
+      if (index >>> 0 !== index || index >= receiver.length)
         return H.ioore(receiver, index);
       return receiver[index];
     },
@@ -6498,7 +6507,7 @@ var $$ = Object.create(null);
       throw H.wrapException(P.UnsupportedError$("Cannot resize immutable List."));
     },
     elementAt$1: function(receiver, index) {
-      if (index < 0 || index >= receiver.length)
+      if (index >>> 0 !== index || index >= receiver.length)
         return H.ioore(receiver, index);
       return receiver[index];
     },
@@ -6709,7 +6718,7 @@ var $$ = Object.create(null);
       throw H.wrapException(P.UnsupportedError$("Cannot resize immutable List."));
     },
     elementAt$1: function(receiver, index) {
-      if (index < 0 || index >= receiver.length)
+      if (index >>> 0 !== index || index >= receiver.length)
         return H.ioore(receiver, index);
       return receiver[index];
     },
@@ -6803,7 +6812,7 @@ var $$ = Object.create(null);
     }
   },
   _ChildrenElementList: {
-    "^": "ListBase;_element,_childElements",
+    "^": "ListBase;_html$_element,_childElements",
     get$length: function(_) {
       return this._childElements.length;
     },
@@ -6817,13 +6826,13 @@ var $$ = Object.create(null);
       var t1 = this._childElements;
       if (index >>> 0 !== index || index >= t1.length)
         return H.ioore(t1, index);
-      this._element.replaceChild(value, t1[index]);
+      this._html$_element.replaceChild(value, t1[index]);
     },
     set$length: function(_, newLength) {
       throw H.wrapException(P.UnsupportedError$("Cannot resize element lists"));
     },
     add$1: function(_, value) {
-      this._element.appendChild(value);
+      this._html$_element.appendChild(value);
       return value;
     },
     get$iterator: function(_) {
@@ -6834,7 +6843,7 @@ var $$ = Object.create(null);
       throw H.wrapException(P.UnimplementedError$(null));
     },
     clear$0: function(_) {
-      J._clearChildren$0$x(this._element);
+      J._clearChildren$0$x(this._html$_element);
     },
     removeAt$1: function(_, index) {
       var t1, result;
@@ -6842,7 +6851,7 @@ var $$ = Object.create(null);
       if (index >>> 0 !== index || index >= t1.length)
         return H.ioore(t1, index);
       result = t1[index];
-      this._element.removeChild(result);
+      this._html$_element.removeChild(result);
       return result;
     },
     $asListBase: function() {
@@ -6958,11 +6967,11 @@ var $$ = Object.create(null);
     }
   },
   _ElementCssClassSet: {
-    "^": "CssClassSetImpl;_element",
+    "^": "CssClassSetImpl;_html$_element",
     readClasses$0: function() {
       var s, t1, trimmed;
       s = P.LinkedHashSet_LinkedHashSet(null, null, null, P.String);
-      for (t1 = this._element.className.split(" "), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
+      for (t1 = this._html$_element.className.split(" "), t1 = new H.ListIterator(t1, t1.length, 0, null); t1.moveNext$0();) {
         trimmed = J.trim$0$s(t1.__internal$_current);
         if (trimmed.length !== 0)
           s.add$1(0, trimmed);
@@ -6971,20 +6980,20 @@ var $$ = Object.create(null);
     },
     writeClasses$1: function(s) {
       P.List_List$from(s, true, null);
-      this._element.className = s.join$1(0, " ");
+      this._html$_element.className = s.join$1(0, " ");
     }
   },
   _ContentCssRect: {
-    "^": "CssRect;_element,left,top,_width,_height",
+    "^": "CssRect;_html$_element,left,top,_width,_height",
     get$height: function(_) {
-      return C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(this._element.offsetHeight)) + this._addOrSubtractToBoxModel$2($.get$_HEIGHT(), "content");
+      return C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(this._html$_element.offsetHeight)) + this._addOrSubtractToBoxModel$2($.get$_HEIGHT(), "content");
     },
     get$width: function(_) {
-      return C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(this._element.offsetWidth)) + this._addOrSubtractToBoxModel$2($.get$_WIDTH(), "content");
+      return C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(this._html$_element.offsetWidth)) + this._addOrSubtractToBoxModel$2($.get$_WIDTH(), "content");
     },
     get$left: function(_) {
       var t1, t2;
-      t1 = J.get$left$x(this._element.getBoundingClientRect());
+      t1 = J.get$left$x(this._html$_element.getBoundingClientRect());
       t2 = this._addOrSubtractToBoxModel$2(["left"], "content");
       if (typeof t1 !== "number")
         return t1.$sub();
@@ -6992,7 +7001,7 @@ var $$ = Object.create(null);
     },
     get$top: function(_) {
       var t1, t2;
-      t1 = J.get$top$x(this._element.getBoundingClientRect());
+      t1 = J.get$top$x(this._html$_element.getBoundingClientRect());
       t2 = this._addOrSubtractToBoxModel$2(["top"], "content");
       if (typeof t1 !== "number")
         return t1.$sub();
@@ -7003,7 +7012,7 @@ var $$ = Object.create(null);
     "^": "MutableRectangle;",
     _addOrSubtractToBoxModel$2: function(dimensions, augmentingMeasurement) {
       var styles, t1, t2, t3, t4, t5, val, measurement, propValue, t6;
-      styles = J.getComputedStyle$0$x(this._element);
+      styles = J.getComputedStyle$0$x(this._html$_element);
       for (t1 = new H.ListIterator(dimensions, dimensions.length, 0, null), t2 = augmentingMeasurement === "margin", t3 = !t2, t4 = augmentingMeasurement === "content", t5 = J.getInterceptor$x(styles), val = 0; t1.moveNext$0();) {
         measurement = t1.__internal$_current;
         if (t2) {
@@ -7218,10 +7227,10 @@ var $$ = Object.create(null);
     "%": "SVGAltGlyphDefElement|SVGAltGlyphItemElement|SVGAnimateElement|SVGAnimateMotionElement|SVGAnimateTransformElement|SVGAnimationElement|SVGComponentTransferFunctionElement|SVGCursorElement|SVGDescElement|SVGDiscardElement|SVGFEBlendElement|SVGFEColorMatrixElement|SVGFEComponentTransferElement|SVGFECompositeElement|SVGFEConvolveMatrixElement|SVGFEDiffuseLightingElement|SVGFEDisplacementMapElement|SVGFEDistantLightElement|SVGFEDropShadowElement|SVGFEFloodElement|SVGFEFuncAElement|SVGFEFuncBElement|SVGFEFuncGElement|SVGFEFuncRElement|SVGFEGaussianBlurElement|SVGFEImageElement|SVGFEMergeElement|SVGFEMergeNodeElement|SVGFEMorphologyElement|SVGFEOffsetElement|SVGFEPointLightElement|SVGFESpecularLightingElement|SVGFESpotLightElement|SVGFETileElement|SVGFETurbulenceElement|SVGFilterElement|SVGFontElement|SVGFontFaceElement|SVGFontFaceFormatElement|SVGFontFaceNameElement|SVGFontFaceSrcElement|SVGFontFaceUriElement|SVGGlyphElement|SVGGlyphRefElement|SVGGradientElement|SVGHKernElement|SVGLinearGradientElement|SVGMPathElement|SVGMarkerElement|SVGMaskElement|SVGMetadataElement|SVGMissingGlyphElement|SVGPatternElement|SVGRadialGradientElement|SVGSetElement|SVGStopElement|SVGSymbolElement|SVGTitleElement|SVGVKernElement|SVGViewElement;SVGElement"
   },
   _AttributeClassSet: {
-    "^": "CssClassSetImpl;_svg$_element",
+    "^": "CssClassSetImpl;_element",
     readClasses$0: function() {
       var classname, s, t1, trimmed;
-      classname = this._svg$_element.getAttribute("class");
+      classname = this._element.getAttribute("class");
       s = P.LinkedHashSet_LinkedHashSet(null, null, null, P.String);
       if (classname == null)
         return s;
@@ -7233,7 +7242,7 @@ var $$ = Object.create(null);
       return s;
     },
     writeClasses$1: function(s) {
-      this._svg$_element.setAttribute("class", s.join$1(0, " "));
+      this._element.setAttribute("class", s.join$1(0, " "));
     }
   }
 }],
@@ -7778,36 +7787,48 @@ var $$ = Object.create(null);
     $.listenBody = t1;
   }, "call$0", "main$closure", 0, 0, 2],
   onKeyDown: [function(keyEvent) {
-    var t1, t2, t3;
-    P.print(J.get$keyCode$x(keyEvent));
+    var keyCode, t1, t2, t3;
     if (J.get$selectionEnd$x($.get$textarea()) === 0)
       return;
-    if (C.JSArray_methods.contains$1($.get$modKey(), keyEvent.keyCode)) {
-      keyEvent.preventDefault();
-      if ($.popup == null)
+    keyCode = J.get$keyCode$x(keyEvent);
+    if ($.popup == null) {
+      if (C.JSArray_methods.contains$1($.get$modKey(), keyCode) || C.JSArray_methods.contains$1($.get$modKey2(), keyCode))
         F.createPopUp();
-      else
-        F.selectNextChar();
-    } else if (C.JSArray_methods.contains$1($.get$modKey3(), keyEvent.keyCode) && $.popup != null) {
-      keyEvent.preventDefault();
-      F.selectNextChar();
-    } else if (C.JSArray_methods.contains$1($.get$modKey2(), keyEvent.keyCode)) {
-      keyEvent.preventDefault();
-      t1 = $.get$textarea();
-      t2 = J.getInterceptor$x(t1);
-      t3 = t2.get$selectionStart(t1);
-      if (typeof t3 !== "number")
-        return t3.$add();
-      t2.set$selectionStart(t1, t3 + -1);
-      if ($.popup != null)
-        F.removePopUp();
-      F.createPopUp();
-    } else if ($.popup != null) {
-      if (keyEvent.keyCode === 13)
+    } else {
+      if (C.JSArray_methods.contains$1($.get$modKey(), keyCode) || C.JSArray_methods.contains$1($.get$modKey3(), keyCode) || keyCode === 39 || keyCode === 40) {
         keyEvent.preventDefault();
-      if (keyEvent.keyCode !== 27 && J.get$length$asx($.newChars) !== 0)
+        t1 = $.selectedCharIndex;
+        if (typeof t1 !== "number")
+          return t1.$add();
+        F.selectCharIndex(t1 + 1);
+      } else if (keyCode === 37 || keyCode === 38) {
+        keyEvent.preventDefault();
+        t1 = $.selectedCharIndex;
+        if (typeof t1 !== "number")
+          return t1.$sub();
+        F.selectCharIndex(t1 - 1);
+      } else if (C.JSArray_methods.contains$1($.get$modKey2(), keyCode)) {
+        keyEvent.preventDefault();
+        t1 = $.get$textarea();
+        t2 = J.getInterceptor$x(t1);
+        t3 = t2.get$selectionStart(t1);
+        if (typeof t3 !== "number")
+          return t3.$add();
+        t2.set$selectionStart(t1, t3 + -1);
+        F.removePopUp();
+        F.createPopUp();
+      } else if (keyCode === 32) {
+        keyEvent.preventDefault();
+        F.createNewCharInput("changeChar");
+      } else if (J.get$length$asx($.newChars) === 0)
+        F.removePopUp();
+      else if (keyCode !== 27) {
+        F.removePopUp();
         F.replaceChar();
-      F.removePopUp();
+      } else
+        F.removePopUp();
+      if (keyCode === 13)
+        keyEvent.preventDefault();
     }
   }, "call$1", "onKeyDown$closure", 2, 0, 8],
   createPopUp: function() {
@@ -7871,6 +7892,8 @@ var $$ = Object.create(null);
     $.char_list.appendChild(addChar);
     t1 = J.get$onMouseEnter$x(addChar);
     H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.addNewChar$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
+    $.caretStart = J.get$selectionStart$x($.get$textarea());
+    $.caretEnd = J.get$selectionEnd$x($.get$textarea());
   },
   removePopUp: function() {
     var t1 = $.popup;
@@ -7882,34 +7905,14 @@ var $$ = Object.create(null);
       J.remove$0$ax(t1);
     $.char_list = null;
   },
-  selectNextChar: function() {
-    var t1, t2;
-    t1 = $.selectedCharIndex;
-    t2 = J.get$children$x($.char_list);
-    if (t1 === t2.get$length(t2) - 2)
-      F.selectCharIndex(0);
-    else {
-      t1 = $.selectedCharIndex;
-      if (typeof t1 !== "number")
-        return t1.$add();
-      F.selectCharIndex(t1 + 1);
-    }
-  },
   selectCharIndex: function(i) {
-    var t1, t2;
-    t1 = J.get$children$x($.char_list);
-    t1 = t1.get$length(t1);
-    if (typeof i !== "number")
-      return i.$add();
-    if (t1 < i + 1)
-      return;
-    t1 = $.selectedCharIndex;
-    t2 = J.get$children$x($.char_list);
-    t2 = t2.get$length(t2);
-    if (typeof t1 !== "number")
-      return t1.$gt();
-    if (t1 > t2 - 2)
+    var t1 = J.get$children$x($.char_list);
+    if (i === t1.get$length(t1) - 1)
       i = 0;
+    else if (i === -1) {
+      t1 = J.get$children$x($.char_list);
+      i = t1.get$length(t1) - 2;
+    }
     t1 = $.selected;
     if (t1 != null)
       J.get$classes$x(t1).remove$1(0, "selected");
@@ -7921,7 +7924,7 @@ var $$ = Object.create(null);
     if (t1 != null)
       t1.cancel$0();
     t1 = J.get$onMouseEnter$x($.selected);
-    t1 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.createNewCharInput$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)]);
+    t1 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.inputMouseEnter$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)]);
     t1._tryResume$0();
     $.listen = t1;
   },
@@ -7932,7 +7935,7 @@ var $$ = Object.create(null);
     t3 = $.selectedCharIndex;
     if (typeof t1 === "string") {
       newChar = J.$index$asx(t2, t3);
-      dCaretPos = 0;
+      dCaretPos = "0";
     } else {
       newChar = J.$index$asx(J.$index$asx(t2, t3), 0);
       dCaretPos = J.$index$asx(J.$index$asx($.newChars, $.selectedCharIndex), 1);
@@ -7957,49 +7960,79 @@ var $$ = Object.create(null);
       return H.ioore(newText, t1);
     newText[t1] = newChar;
     J.set$value$x($.get$textarea(), C.JSArray_methods.join$1(newText, ""));
-    t1 = J.get$selectionEnd$x($.get$textarea());
+    t1 = $.caretEnd;
+    t2 = H.Primitives_parseInt(dCaretPos, null, null);
     if (typeof t1 !== "number")
       return t1.$add();
-    if (typeof dCaretPos !== "number")
-      return H.iae(dCaretPos);
-    t2 = J.get$length$asx(newChar);
     if (typeof t2 !== "number")
       return H.iae(t2);
-    newCaretPos = t1 + dCaretPos + t2 - 1;
+    t3 = J.get$length$asx(newChar);
+    if (typeof t3 !== "number")
+      return H.iae(t3);
+    newCaretPos = t1 + t2 + t3 - 1;
     J.setSelectionRange$2$x($.get$textarea(), newCaretPos, newCaretPos);
   },
-  createNewCharInput: [function(e) {
-    var t1, t2;
-    $.caretStart = J.get$selectionStart$x($.get$textarea());
-    $.caretEnd = J.get$selectionEnd$x($.get$textarea());
+  inputMouseEnter: [function(e) {
+    F.createNewCharInput("changeChar");
+  }, "call$1", "inputMouseEnter$closure", 2, 0, 9],
+  createNewCharInput: function(id) {
+    var t1, t2, value, t3;
     $.listenBody.pause$0(0);
+    if (J.get$length$asx($.newChars) !== 0) {
+      t1 = $.selectedCharIndex;
+      t2 = J.get$length$asx($.newChars);
+      t2 = t1 == null ? t2 == null : t1 === t2;
+      t1 = t2;
+    } else
+      t1 = true;
+    if (t1)
+      value = "";
+    else if (id === "changeCaret") {
+      t1 = J.$index$asx($.newChars, $.selectedCharIndex);
+      if (typeof t1 === "string") {
+        t1 = $.newChars;
+        t2 = $.selectedCharIndex;
+        t3 = J.getInterceptor$asx(t1);
+        t3.$indexSet(t1, t2, [t3.$index(t1, t2), "0"]);
+      }
+      value = J.$index$asx(J.$index$asx($.newChars, $.selectedCharIndex), 1);
+    } else {
+      t1 = J.$index$asx($.newChars, $.selectedCharIndex);
+      value = typeof t1 === "string" ? J.get$text$x($.selected) : J.$index$asx(J.$index$asx($.newChars, $.selectedCharIndex), 0);
+    }
     t1 = W.InputElement_InputElement(null);
     $.newCharInput = t1;
-    t1.id = "changeChar";
+    t1.id = id;
     t2 = J.getInterceptor$x(t1);
     t2.set$type(t1, "text");
-    t2.set$value(t1, J.get$text$x($.selected));
+    t2.set$value(t1, value);
     J.set$width$x(t1.style, J.get$width$x(J.getComputedStyle$0$x($.selected)));
-    t1 = t2.get$onKeyUp(t1);
-    H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.inputKeyUp$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
+    t3 = t2.get$onKeyUp(t1);
+    H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t3._target, t3._eventType, W._wrapZone(F.inputKeyUp$closure()), t3._useCapture), [H.getTypeArgumentByIndex(t3, 0)])._tryResume$0();
+    t1 = t2.get$onKeyDown(t1);
+    H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new F.createNewCharInput_closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
     t1 = $.selected;
     t2 = J.getInterceptor$x(t1);
     J.clear$0$ax(t2.get$children(t1));
     t1.appendChild($.newCharInput);
     t1 = t2.get$onMouseLeave(t1);
     H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.inputMouseLeave$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
-  }, "call$1", "createNewCharInput$closure", 2, 0, 9],
+    t1 = $.newCharInput;
+    t2 = J.getInterceptor$x(t1);
+    t2.select$0(t1);
+    t2.setSelectionRange$2(t1, 0, 0);
+  },
   inputMouseLeave: [function(e) {
     F.updateChar();
   }, "call$1", "inputMouseLeave$closure", 2, 0, 9],
   updateChar: function() {
-    var t1, t2, updatedChar, t3;
+    var t1, t2, updatedChar, i, t3;
     t1 = $.get$textarea();
     t2 = J.getInterceptor$x(t1);
     t2.select$0(t1);
     t2.setSelectionRange$2(t1, $.caretStart, $.caretEnd);
     updatedChar = J.get$value$x($.newCharInput);
-    J.set$text$x($.selected, updatedChar);
+    i = $.newCharInput.id === "changeChar" ? 0 : 1;
     if (updatedChar === "") {
       t1 = J.get$children$x($.char_list);
       if (t1.get$length(t1) === 2) {
@@ -8014,24 +8047,37 @@ var $$ = Object.create(null);
         F.selectCharIndex($.selectedCharIndex);
       }
     } else if (J.get$length$asx($.newChars) === 0) {
-      J.$indexSet$ax($.replaceLetter, $.oldChars, [updatedChar]);
+      J.$indexSet$ax($.replaceLetter, $.oldChars, [[updatedChar, "0"]]);
       $.newChars = J.$index$asx($.replaceLetter, $.oldChars);
+      J.set$text$x($.selected, updatedChar);
+    } else if (J.get$classes$x($.selected).readClasses$0().contains$1(0, "new")) {
+      t1 = $.replaceLetter;
+      t2 = $.oldChars;
+      if (i === 0) {
+        J.add$1$ax(J.$index$asx(t1, t2), [updatedChar, "0"]);
+        J.set$text$x($.selected, updatedChar);
+      } else
+        J.add$1$ax(J.$index$asx(t1, t2), ["", updatedChar]);
+      J.get$classes$x($.selected).remove$1(0, "new");
     } else {
-      t1 = J.get$classes$x($.selected).readClasses$0().contains$1(0, "new");
+      t1 = J.$index$asx(J.$index$asx($.replaceLetter, $.oldChars), $.selectedCharIndex);
       t2 = $.replaceLetter;
       t3 = $.oldChars;
-      if (t1) {
-        J.add$1$ax(J.$index$asx(t2, t3), updatedChar);
-        J.get$classes$x($.selected).remove$1(0, "new");
-      } else
+      if (typeof t1 === "string") {
         J.$indexSet$ax(J.$index$asx(t2, t3), $.selectedCharIndex, updatedChar);
+        J.set$text$x($.selected, updatedChar);
+      } else {
+        J.$indexSet$ax(J.$index$asx(J.$index$asx(t2, t3), $.selectedCharIndex), i, updatedChar);
+        J.set$text$x($.selected, J.$index$asx(J.$index$asx(J.$index$asx($.replaceLetter, $.oldChars), $.selectedCharIndex), 0));
+      }
     }
     $.get$local().setItem("replaceLetter3", C.JsonCodec_null_null.encode$1($.replaceLetter));
     J.remove$0$ax($.newCharInput);
     $.listenBody.resume$0();
   },
-  inputKeyUp: [function(keyEvent) {
+  inputKeyUp: [function(e) {
     var span, t1;
+    P.print([J.get$keyCode$x(e), 9]);
     span = document.createElement("span", null);
     span.textContent = J.get$value$x($.newCharInput);
     $.newCharInput.parentNode.appendChild(span);
@@ -8039,9 +8085,19 @@ var $$ = Object.create(null);
     span.toString;
     J.set$width$x(t1, C.JSNumber_methods.toString$0(C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(span.offsetWidth)) + new W._ContentCssRect(span, 0, 0, 0, 0)._addOrSubtractToBoxModel$2($.get$_WIDTH(), "content") + 10) + "px");
     J.remove$0$ax(span);
-    if (J.get$keyCode$x(keyEvent) === 13) {
-      keyEvent.preventDefault();
+    t1 = e.keyCode;
+    if (t1 === 13) {
+      e.preventDefault();
       F.updateChar();
+    } else if (t1 === 9) {
+      P.print(10);
+      e.preventDefault();
+      F.updateChar();
+      t1 = $.newCharInput.id;
+      if (t1 === "changeCaret")
+        F.createNewCharInput("changeChar");
+      else if (t1 === "changeChar")
+        F.createNewCharInput("changeCaret");
     }
   }, "call$1", "inputKeyUp$closure", 2, 0, 10],
   addNewChar: [function(e) {
@@ -8079,7 +8135,14 @@ var $$ = Object.create(null);
       }
     $.lastCharIndex = $.selectedCharIndex;
     F.selectCharIndex(J.get$length$asx($.newChars));
-  }, "call$1", "addNewChar$closure", 2, 0, 9]
+  }, "call$1", "addNewChar$closure", 2, 0, 9],
+  createNewCharInput_closure: {
+    "^": "Closure:13;",
+    call$1: function(keyDown) {
+      if (J.get$keyCode$x(keyDown) === 9)
+        keyDown.preventDefault();
+    }
+  }
 },
 1],
 ]);
@@ -8122,6 +8185,10 @@ $$ = null;
   _.$isObject = TRUE;
   _ = W.KeyEvent;
   _.$isKeyEvent = TRUE;
+  _.$isKeyboardEvent = TRUE;
+  _.$isObject = TRUE;
+  _ = W.KeyboardEvent;
+  _.$isKeyboardEvent = TRUE;
   _.$isObject = TRUE;
   _ = W.MouseEvent;
   _.$isMouseEvent = TRUE;
@@ -8704,7 +8771,7 @@ Isolate.$lazy($, "modKey3", "modKey3", "get$modKey3", function() {
   return [9, 17];
 });
 Isolate.$lazy($, "replaceLetterDefault", "replaceLetterDefault", "get$replaceLetterDefault", function() {
-  return P.LinkedHashMap_LinkedHashMap$_literal(["weier", ["\u2045\u2211_{n=1}^\u221e f_{n} \" uniform convergent op $A$\" \u21b5 \n\u21d1 \u21b5\n\u2203(a_{n})>0 : \u21b5\n|f_{n}(z)|\u2264a_{n} \u25ad\u2200z\u2208A  \u2200n\u2208\u2115 \u21b5\n\u2211_{n=1}^\u221e a_{n} \" is convergent\"\u2046"], ">", ["\u2265", "\u27e9", "\u2287", "\u2283", "\u2192", "\u21a6", "\u21d2", "\u27f9", "\u22b3", "\u27f5"], "=>", ["\u21d1", "\u21d3", "\u21d5", "\u21d2", "\u27f9", "\u27fa", "\u21d4"], "A", ["\ud835\udc34", "\u2200", "\ud835\udc9c", "\ud835\udd04"], "B", ["\u212c", "\ud835\udd05", "\u2a01"], "C", ["\u2102", "\ud835\udc9e", "\u2210"], "D", ["\ud835\udc9f", "\ud835\udd07", "\u0394", "\u2229"], "E", ["\u2205", "\u2130"], "F", ["\u2131"], "G", ["\ud835\udca2", "\u0393", "\ud835\udd0a", "\u2207", "\u2220", "\u221f", "\u27c2", "\u2225", "\u2226", "\u221d", "\u22bf", "\u22be", "\u299c", "\u299d"], "H", ["\u210b"], "I", ["\ud835\udc3c", "\u2110", "\u2111", "\u2229", "\u222b", "\u222c", "\u222d", "\u2a0c", "\u222e", "\u222f", "\u2230"], "J", ["\ud835\udca5", "\ud835\udd0d"], "K", ["\ud835\udca6", "\ud835\udd0e"], "L", ["\u2112", "\ud835\udd0f", "\u00ac", "\u2200", "\u2203", "\u2204", "\u2234", "\u2235", "\u2227", "\u2228", "\u22a8", "\u22ad", "\u22c0", "\u22c1"], "M", ["\u2133", "\ud835\udd10"], "N", ["\u2115", "\u2135", "\ud835\udca9", "\ud835\udd11"], "O", ["\u03a9", "\ud835\udcaa", "\u2295", "\u2296", "\u2297", "\u2298", "\u2299", "\u229a", "\u229b", "\u229c", "\u229d"], "P", ["\u2119", "\u220f", "\ud835\udcab", "\u03a0", "\u03a6", "\u03a8"], "Q", ["\u211a", "\ud835\udc44", "\ud835\udcac", "\u220e"], "R", ["\u211d", "\u211b"], "S", ["\u2211", "\ud835\udc46", "\u03a3", "\ud835\udcae", "\u2140"], "T", ["\u22a4", "\u22a5", "\u22a2", "\u22a3", "\u22a7", "\u22a8", "\u22a9", "\ud835\udcaf"], "U", ["\u222a", "\u2229", "\u22c3", "\u22c2", "\ud835\udc48", "\ud835\udcb0", "\u2294", "\u2293", "\u2a06", "\u2a05"], "V", ["\ud835\udc49", "\ud835\udcb1", "\u01b2"], "W", ["\ud835\udc4a", "\ud835\udcb2"], "X", ["\u039e", "\ud835\udcb3", "\u2a09"], "Y", ["\ud835\udcb4"], "Z", ["\u2124", "\ud835\udcb5"], "a", ["\u03b1", "\u2200", "\u2227", "\u2220", "\ud835\udd1e"], "aa", ["\u03b1a", "\u2200a", "\u2227", "\u2220", "\ud835\udd1e"], "b", ["\u03b2", "\ud835\udc4f", "\ud835\udd1f"], "c", ["\u03c7", "\ud835\udd20", "\u21af", "\u222e"], "d", ["\u03b4", "\ud835\udd21", "\u2202", "\u00ba", "\u222c"], "e", ["\u2205", "\u03f5", "\u03b5", "\u2203", "\u2204"], "f", ["\u03d5", "\u03c6"], "g", ["\u03b3", "\ud835\udd24"], "h", ["\u03b7", "\ud835\udd25", "\u2020", "\u2661", "\u2665"], "i", ["\u2208", "\u2209", "\u221e", "\u03b9", "\u222b", "\u220b", "\u220c", "\u2229"], "j", ["\ud835\udd27"], "k", ["kasperpeulen@gmail.com", "\ud835\udc58", "\u03ba"], "l", ["\u03bb", "\u2113", "\ud835\udd29"], "m", ["\u03bc", "\ud835\udd2a"], "n", ["\u03bd", "\ud835\udd2b", "\u00ac", "\u2207"], "o", ["\u03c9", "\ud835\udd2c", "\u2228", "\u00b0"], "p", ["\u03c0", "\u03d5", "\u03c6", "\u03c8", "\ud835\udd2d"], "q", ["\ud835\udd2e", "\u220e"], "r", ["\u03c1", "\ud835\udd2f"], "s", ["\u03c3", "\ud835\udd30", "\u221a", "\u221b", "\u221c", "\u2211", "\u2235"], "t", ["\u03c4", "\u03b8", "\ud835\udd31", "\u2234"], "u", ["\u22c3", "\u22c2", "\u03c5", "\ud835\udd32", "\u222a", "\u2229", "\u2294", "\u2293"], "v", ["\u028b"], "w", ["\u03c9", "\u26a0"], "x", ["\ud835\udc65", "\u03be", "\u00d7", "\u2a09", "\u2297", "\u2093"], "y", ["\ud835\udc66"], "z", ["\u03b6"], "$", [["\u2045\u2046", -1]], "%", ["\u2030", "\u2031"], "#", ["\u25fb", "\u229e", "\u229f", "\u22a0", "\u22a1", "\u29c7", "\u29c8", "\u29c5", "\u29c6"], ".", ["\u2026", "\u22ef", "\u22f0", "\u22f1", "\u22ee", "\u00b7", "\u2218", "\u2219"], ":", ["\u2237", "\u2250", "\u2251", "\u2252", "\u2253", "\u2254", "\u2255", "\u223a", "\u223b", "\u2234", "\u2235"], "+", ["\u00b1", "\u2213", "\u2295", "\u208a", "\u207a"], "-", ["\u203e", "\u23de"], "'", ["\u0301", "\u0304", "\u0307", "\u0309", "\u030a", "\u20f0"], "`", ["\u0300"], "~", ["\u0303", "\u0330"], "/", [["()\u2215()", -4]]], null, null);
+  return P.LinkedHashMap_LinkedHashMap$_literal(["weier", ["\u2045\u2211_{n=1}^\u221e f_{n} \" uniform convergent op $A$\" \u21b5 \n\u21d1 \u21b5\n\u2203(a_{n})>0 : \u21b5\n|f_{n}(z)|\u2264a_{n} \u25ad\u2200z\u2208A  \u2200n\u2208\u2115 \u21b5\n\u2211_{n=1}^\u221e a_{n} \" is convergent\"\u2046"], ">", ["\u2265", "\u27e9", "\u2287", "\u2283", "\u2192", "\u21a6", "\u21d2", "\u27f9", "\u22b3", "\u27f5"], "=>", ["\u21d1", "\u21d3", "\u21d5", "\u21d2", "\u27f9", "\u27fa", "\u21d4"], "A", ["\ud835\udc34", "\u2200", "\ud835\udc9c", "\ud835\udd04"], "B", ["\u212c", "\ud835\udd05", "\u2a01"], "C", ["\u2102", "\ud835\udc9e", "\u2210"], "D", ["\ud835\udc9f", "\ud835\udd07", "\u0394", "\u2229"], "E", ["\u2205", "\u2130"], "F", ["\u2131"], "G", ["\ud835\udca2", "\u0393", "\ud835\udd0a", "\u2207", "\u2220", "\u221f", "\u27c2", "\u2225", "\u2226", "\u221d", "\u22bf", "\u22be", "\u299c", "\u299d"], "H", ["\u210b"], "I", ["\ud835\udc3c", "\u2110", "\u2111", "\u2229", "\u222b", "\u222c", "\u222d", "\u2a0c", "\u222e", "\u222f", "\u2230"], "J", ["\ud835\udca5", "\ud835\udd0d"], "K", ["\ud835\udca6", "\ud835\udd0e"], "L", ["\u2112", "\ud835\udd0f", "\u00ac", "\u2200", "\u2203", "\u2204", "\u2234", "\u2235", "\u2227", "\u2228", "\u22a8", "\u22ad", "\u22c0", "\u22c1"], "M", ["\u2133", "\ud835\udd10"], "N", ["\u2115", "\u2135", "\ud835\udca9", "\ud835\udd11"], "O", ["\u03a9", "\ud835\udcaa", "\u2295", "\u2296", "\u2297", "\u2298", "\u2299", "\u229a", "\u229b", "\u229c", "\u229d"], "P", ["\u2119", "\u220f", "\ud835\udcab", "\u03a0", "\u03a6", "\u03a8"], "Q", ["\u211a", "\ud835\udc44", "\ud835\udcac", "\u220e"], "R", ["\u211d", "\u211b"], "S", ["\u2211", "\ud835\udc46", "\u03a3", "\ud835\udcae", "\u2140"], "T", ["\u22a4", "\u22a5", "\u22a2", "\u22a3", "\u22a7", "\u22a8", "\u22a9", "\ud835\udcaf"], "U", ["\u222a", "\u2229", "\u22c3", "\u22c2", "\ud835\udc48", "\ud835\udcb0", "\u2294", "\u2293", "\u2a06", "\u2a05"], "V", ["\ud835\udc49", "\ud835\udcb1", "\u01b2"], "W", ["\ud835\udc4a", "\ud835\udcb2"], "X", ["\u039e", "\ud835\udcb3", "\u2a09"], "Y", ["\ud835\udcb4"], "Z", ["\u2124", "\ud835\udcb5"], "a", ["\u03b1", "\u2200", "\u2227", "\u2220", "\ud835\udd1e"], "aa", ["\u03b1a", "\u2200a", "\u2227", "\u2220", "\ud835\udd1e"], "b", ["\u03b2", "\ud835\udc4f", "\ud835\udd1f"], "c", ["\u03c7", "\ud835\udd20", "\u21af", "\u222e"], "d", ["\u03b4", "\ud835\udd21", "\u2202", "\u00ba", "\u222c"], "e", ["\u2205", "\u03f5", "\u03b5", "\u2203", "\u2204"], "f", ["\u03d5", "\u03c6"], "g", ["\u03b3", "\ud835\udd24"], "h", ["\u03b7", "\ud835\udd25", "\u2020", "\u2661", "\u2665"], "i", ["\u2208", "\u2209", "\u221e", "\u03b9", "\u222b", "\u220b", "\u220c", "\u2229"], "j", ["\ud835\udd27"], "k", ["kasperpeulen@gmail.com", "\ud835\udc58", "\u03ba"], "l", ["\u03bb", "\u2113", "\ud835\udd29"], "m", ["\u03bc", "\ud835\udd2a"], "n", ["\u03bd", "\ud835\udd2b", "\u00ac", "\u2207"], "o", ["\u03c9", "\ud835\udd2c", "\u2228", "\u00b0"], "p", ["\u03c0", "\u03d5", "\u03c6", "\u03c8", "\ud835\udd2d"], "q", ["\ud835\udd2e", "\u220e"], "r", ["\u03c1", "\ud835\udd2f"], "s", ["\u03c3", "\ud835\udd30", "\u221a", "\u221b", "\u221c", "\u2211", "\u2235"], "t", ["\u03c4", "\u03b8", "\ud835\udd31", "\u2234"], "u", ["\u22c3", "\u22c2", "\u03c5", "\ud835\udd32", "\u222a", "\u2229", "\u2294", "\u2293"], "v", ["\u028b"], "w", ["\u03c9", "\u26a0"], "x", ["\ud835\udc65", "\u03be", "\u00d7", "\u2a09", "\u2297", "\u2093"], "y", ["\ud835\udc66"], "z", ["\u03b6"], "$", [["\u2045\u2046", -2]], "%", ["\u2030", "\u2031"], "#", ["\u25fb", "\u229e", "\u229f", "\u22a0", "\u22a1", "\u29c7", "\u29c8", "\u29c5", "\u29c6"], ".", ["\u2026", "\u22ef", "\u22f0", "\u22f1", "\u22ee", "\u00b7", "\u2218", "\u2219"], ":", ["\u2237", "\u2250", "\u2251", "\u2252", "\u2253", "\u2254", "\u2255", "\u223a", "\u223b", "\u2234", "\u2235"], "+", ["\u00b1", "\u2213", "\u2295", "\u208a", "\u207a"], "-", ["\u203e", "\u23de"], "'", ["\u0301", "\u0304", "\u0307", "\u0309", "\u030a", "\u20f0"], "`", ["\u0300"], "~", ["\u0303", "\u0330"], "/", [["()\u2215()", -4]]], null, null);
 });
 Isolate.$lazy($, "replaceLetterAfter", "replaceLetterAfter", "get$replaceLetterAfter", function() {
   return P.LinkedHashMap_LinkedHashMap$_literal(["e-mail", "kasperpeulen@gmail.com"], null, null);
@@ -8722,7 +8789,7 @@ init.metadata = [{func: "dynamic__String", args: [P.String]},
 {func: "int__Object", ret: P.$int, args: [P.Object]},
 {func: "void__KeyEvent", void: true, args: [W.KeyEvent]},
 {func: "dynamic__MouseEvent", args: [W.MouseEvent]},
-{func: "dynamic__KeyEvent", args: [W.KeyEvent]},
+{func: "dynamic__KeyboardEvent", args: [W.KeyboardEvent]},
 {func: "args0"},
 {func: "args2", args: [null, null]},
 {func: "args1", args: [null]},
