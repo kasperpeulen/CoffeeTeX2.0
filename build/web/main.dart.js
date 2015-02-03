@@ -7788,9 +7788,11 @@ var $$ = Object.create(null);
   }, "call$0", "main$closure", 0, 0, 2],
   onKeyDown: [function(keyEvent) {
     var keyCode, t1, t2, t3;
+    keyCode = J.get$keyCode$x(keyEvent);
+    $.get$registerKeyCode().textContent = "Keycode " + H.S(keyCode);
+    document.body.appendChild($.get$registerKeyCode());
     if (J.get$selectionEnd$x($.get$textarea()) === 0)
       return;
-    keyCode = J.get$keyCode$x(keyEvent);
     if ($.popup == null) {
       if (C.JSArray_methods.contains$1($.get$modKey(), keyCode) || C.JSArray_methods.contains$1($.get$modKey2(), keyCode))
         F.createPopUp();
@@ -8077,7 +8079,6 @@ var $$ = Object.create(null);
   },
   inputKeyUp: [function(e) {
     var span, t1;
-    P.print([J.get$keyCode$x(e), 9]);
     span = document.createElement("span", null);
     span.textContent = J.get$value$x($.newCharInput);
     $.newCharInput.parentNode.appendChild(span);
@@ -8085,11 +8086,10 @@ var $$ = Object.create(null);
     span.toString;
     J.set$width$x(t1, C.JSNumber_methods.toString$0(C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(span.offsetWidth)) + new W._ContentCssRect(span, 0, 0, 0, 0)._addOrSubtractToBoxModel$2($.get$_WIDTH(), "content") + 10) + "px");
     J.remove$0$ax(span);
-    t1 = e.keyCode;
-    if (t1 === 13) {
+    if (J.get$keyCode$x(e) === 13) {
       e.preventDefault();
       F.updateChar();
-    } else if (t1 === 9) {
+    } else if (e.keyCode === 9) {
       P.print(10);
       e.preventDefault();
       F.updateChar();
@@ -8769,6 +8769,9 @@ Isolate.$lazy($, "modKey2", "modKey2", "get$modKey2", function() {
 });
 Isolate.$lazy($, "modKey3", "modKey3", "get$modKey3", function() {
   return [9, 17];
+});
+Isolate.$lazy($, "registerKeyCode", "registerKeyCode", "get$registerKeyCode", function() {
+  return document.createElement("p", null);
 });
 Isolate.$lazy($, "replaceLetterDefault", "replaceLetterDefault", "get$replaceLetterDefault", function() {
   return P.LinkedHashMap_LinkedHashMap$_literal(["weier", ["\u2045\u2211_{n=1}^\u221e f_{n} \" uniform convergent op $A$\" \u21b5 \n\u21d1 \u21b5\n\u2203(a_{n})>0 : \u21b5\n|f_{n}(z)|\u2264a_{n} \u25ad\u2200z\u2208A  \u2200n\u2208\u2115 \u21b5\n\u2211_{n=1}^\u221e a_{n} \" is convergent\"\u2046"], ">", ["\u2265", "\u27e9", "\u2287", "\u2283", "\u2192", "\u21a6", "\u21d2", "\u27f9", "\u22b3", "\u27f5"], "=>", ["\u21d1", "\u21d3", "\u21d5", "\u21d2", "\u27f9", "\u27fa", "\u21d4"], "A", ["\ud835\udc34", "\u2200", "\ud835\udc9c", "\ud835\udd04"], "B", ["\u212c", "\ud835\udd05", "\u2a01"], "C", ["\u2102", "\ud835\udc9e", "\u2210"], "D", ["\ud835\udc9f", "\ud835\udd07", "\u0394", "\u2229"], "E", ["\u2205", "\u2130"], "F", ["\u2131"], "G", ["\ud835\udca2", "\u0393", "\ud835\udd0a", "\u2207", "\u2220", "\u221f", "\u27c2", "\u2225", "\u2226", "\u221d", "\u22bf", "\u22be", "\u299c", "\u299d"], "H", ["\u210b"], "I", ["\ud835\udc3c", "\u2110", "\u2111", "\u2229", "\u222b", "\u222c", "\u222d", "\u2a0c", "\u222e", "\u222f", "\u2230"], "J", ["\ud835\udca5", "\ud835\udd0d"], "K", ["\ud835\udca6", "\ud835\udd0e"], "L", ["\u2112", "\ud835\udd0f", "\u00ac", "\u2200", "\u2203", "\u2204", "\u2234", "\u2235", "\u2227", "\u2228", "\u22a8", "\u22ad", "\u22c0", "\u22c1"], "M", ["\u2133", "\ud835\udd10"], "N", ["\u2115", "\u2135", "\ud835\udca9", "\ud835\udd11"], "O", ["\u03a9", "\ud835\udcaa", "\u2295", "\u2296", "\u2297", "\u2298", "\u2299", "\u229a", "\u229b", "\u229c", "\u229d"], "P", ["\u2119", "\u220f", "\ud835\udcab", "\u03a0", "\u03a6", "\u03a8"], "Q", ["\u211a", "\ud835\udc44", "\ud835\udcac", "\u220e"], "R", ["\u211d", "\u211b"], "S", ["\u2211", "\ud835\udc46", "\u03a3", "\ud835\udcae", "\u2140"], "T", ["\u22a4", "\u22a5", "\u22a2", "\u22a3", "\u22a7", "\u22a8", "\u22a9", "\ud835\udcaf"], "U", ["\u222a", "\u2229", "\u22c3", "\u22c2", "\ud835\udc48", "\ud835\udcb0", "\u2294", "\u2293", "\u2a06", "\u2a05"], "V", ["\ud835\udc49", "\ud835\udcb1", "\u01b2"], "W", ["\ud835\udc4a", "\ud835\udcb2"], "X", ["\u039e", "\ud835\udcb3", "\u2a09"], "Y", ["\ud835\udcb4"], "Z", ["\u2124", "\ud835\udcb5"], "a", ["\u03b1", "\u2200", "\u2227", "\u2220", "\ud835\udd1e"], "aa", ["\u03b1a", "\u2200a", "\u2227", "\u2220", "\ud835\udd1e"], "b", ["\u03b2", "\ud835\udc4f", "\ud835\udd1f"], "c", ["\u03c7", "\ud835\udd20", "\u21af", "\u222e"], "d", ["\u03b4", "\ud835\udd21", "\u2202", "\u00ba", "\u222c"], "e", ["\u2205", "\u03f5", "\u03b5", "\u2203", "\u2204"], "f", ["\u03d5", "\u03c6"], "g", ["\u03b3", "\ud835\udd24"], "h", ["\u03b7", "\ud835\udd25", "\u2020", "\u2661", "\u2665"], "i", ["\u2208", "\u2209", "\u221e", "\u03b9", "\u222b", "\u220b", "\u220c", "\u2229"], "j", ["\ud835\udd27"], "k", ["kasperpeulen@gmail.com", "\ud835\udc58", "\u03ba"], "l", ["\u03bb", "\u2113", "\ud835\udd29"], "m", ["\u03bc", "\ud835\udd2a"], "n", ["\u03bd", "\ud835\udd2b", "\u00ac", "\u2207"], "o", ["\u03c9", "\ud835\udd2c", "\u2228", "\u00b0"], "p", ["\u03c0", "\u03d5", "\u03c6", "\u03c8", "\ud835\udd2d"], "q", ["\ud835\udd2e", "\u220e"], "r", ["\u03c1", "\ud835\udd2f"], "s", ["\u03c3", "\ud835\udd30", "\u221a", "\u221b", "\u221c", "\u2211", "\u2235"], "t", ["\u03c4", "\u03b8", "\ud835\udd31", "\u2234"], "u", ["\u22c3", "\u22c2", "\u03c5", "\ud835\udd32", "\u222a", "\u2229", "\u2294", "\u2293"], "v", ["\u028b"], "w", ["\u03c9", "\u26a0"], "x", ["\ud835\udc65", "\u03be", "\u00d7", "\u2a09", "\u2297", "\u2093"], "y", ["\ud835\udc66"], "z", ["\u03b6"], "$", [["\u2045\u2046", -2]], "%", ["\u2030", "\u2031"], "#", ["\u25fb", "\u229e", "\u229f", "\u22a0", "\u22a1", "\u29c7", "\u29c8", "\u29c5", "\u29c6"], ".", ["\u2026", "\u22ef", "\u22f0", "\u22f1", "\u22ee", "\u00b7", "\u2218", "\u2219"], ":", ["\u2237", "\u2250", "\u2251", "\u2252", "\u2253", "\u2254", "\u2255", "\u223a", "\u223b", "\u2234", "\u2235"], "+", ["\u00b1", "\u2213", "\u2295", "\u208a", "\u207a"], "-", ["\u203e", "\u23de"], "'", ["\u0301", "\u0304", "\u0307", "\u0309", "\u030a", "\u20f0"], "`", ["\u0300"], "~", ["\u0303", "\u0330"], "/", [["()\u2215()", -4]]], null, null);

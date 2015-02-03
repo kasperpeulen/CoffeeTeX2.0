@@ -29,6 +29,8 @@ List modKey = [KeyCode.WIN_KEY_RIGHT,KeyCode.CONTEXT_MENU];
 List modKey2 = [KeyCode.ALT];
 List modKey3 = [KeyCode.TAB,KeyCode.CTRL];
 
+ParagraphElement registerKeyCode = new ParagraphElement();
+
 void main() {
   print(KeyCode.MAC_FF_META);
   //load default letters, the first time
@@ -43,9 +45,14 @@ void main() {
 }
 
 void onKeyDown(KeyEvent keyEvent) {
+  var keyCode = keyEvent.keyCode;
+  registerKeyCode.text = "Keycode ${keyCode}";
+  document.body.append(registerKeyCode);
+
   if (textarea.selectionEnd == 0) return;
 
-  var keyCode = keyEvent.keyCode;
+
+
 
   //if no popup exists
   if (popup == null){
@@ -323,7 +330,6 @@ updateChar() {
 }
 
 inputKeyUp(KeyboardEvent e){
-  print([e.keyCode,KeyCode.TAB]);
   //hack to properly resize input width
 
   SpanElement span = new SpanElement()
