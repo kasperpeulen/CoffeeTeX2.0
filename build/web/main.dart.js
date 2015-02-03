@@ -7774,7 +7774,6 @@ var $$ = Object.create(null);
 ["", "main.dart", , F, {
   "^": "",
   main: [function() {
-    P.print(224);
     if ($.get$local().getItem("replaceLetter3") != null)
       $.replaceLetter = C.JsonCodec_null_null.decode$1($.get$local().getItem("replaceLetter3"));
     else
@@ -7868,8 +7867,7 @@ var $$ = Object.create(null);
     }
     t1 = J.substring$2$s(J.get$value$x($.get$textarea()), J.get$selectionStart$x($.get$textarea()), J.get$selectionEnd$x($.get$textarea()));
     $.oldChars = t1;
-    P.print([J.containsKey$1$x($.replaceLetter, t1), J.$index$asx($.replaceLetter, $.oldChars)]);
-    if (J.containsKey$1$x($.replaceLetter, $.oldChars) === true && J.get$length$asx(J.$index$asx($.replaceLetter, $.oldChars)) !== 0) {
+    if (J.containsKey$1$x($.replaceLetter, t1) === true && J.get$length$asx(J.$index$asx($.replaceLetter, $.oldChars)) !== 0) {
       t1 = J.$index$asx($.replaceLetter, $.oldChars);
       $.newChars = t1;
       for (t1 = J.get$iterator$ax(t1); t1.moveNext$0();) {
@@ -8090,7 +8088,6 @@ var $$ = Object.create(null);
       e.preventDefault();
       F.updateChar();
     } else if (e.keyCode === 9) {
-      P.print(10);
       e.preventDefault();
       F.updateChar();
       t1 = $.newCharInput.id;
@@ -8162,8 +8159,8 @@ $$ = null;
   _ = W.Node;
   _.$isNode = TRUE;
   _.$isObject = TRUE;
-  P.num.$isObject = TRUE;
   P.Object.$isObject = TRUE;
+  P.num.$isObject = TRUE;
   _ = P.Duration;
   _.$isDuration = TRUE;
   _.$isObject = TRUE;

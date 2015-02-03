@@ -32,7 +32,6 @@ List modKey3 = [KeyCode.TAB,KeyCode.CTRL];
 ParagraphElement registerKeyCode = new ParagraphElement();
 
 void main() {
-  print(KeyCode.MAC_FF_META);
   //load default letters, the first time
   if (local["replaceLetter3"] != null)
     replaceLetter = JSON.decode(local["replaceLetter3"]);
@@ -117,8 +116,6 @@ void createPopUp() {
   oldChars = textarea.value.substring(textarea.selectionStart,textarea.selectionEnd);
 
   //check if oldChars match replaceLetter
-
-  print ([replaceLetter.containsKey(oldChars),replaceLetter[oldChars]]);
 
   if (replaceLetter.containsKey(oldChars) && replaceLetter[oldChars].length != 0) {
     newChars = replaceLetter[oldChars];
@@ -345,7 +342,6 @@ inputKeyUp(KeyboardEvent e){
   }
 
   else if (e.keyCode == KeyCode.TAB){
-    print(10);
     e.preventDefault();
     updateChar();
     if (newCharInput.id == "changeCaret"){
