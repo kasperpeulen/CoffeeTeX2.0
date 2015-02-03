@@ -7775,7 +7775,7 @@ var $$ = Object.create(null);
   "^": "",
   main: [function() {
     P.print(window.navigator.userAgent);
-    if (J.contains$1$asx(window.navigator.userAgent, "Explorer"))
+    if (J.contains$1$asx(window.navigator.userAgent, ".NET"))
       $.modKey2 = [17];
     if ($.get$local().getItem("replaceLetter3") != null)
       $.replaceLetter = C.JsonCodec_null_null.decode$1($.get$local().getItem("replaceLetter3"));

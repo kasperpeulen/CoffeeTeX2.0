@@ -33,7 +33,7 @@ ParagraphElement registerKeyCode = new ParagraphElement();
 
 void main() {
   print(window.navigator.userAgent);
-  if (window.navigator.userAgent.contains("Explorer")){
+  if (window.navigator.userAgent.contains(".NET")){
     modKey2 = [KeyCode.CTRL];
   }
 
