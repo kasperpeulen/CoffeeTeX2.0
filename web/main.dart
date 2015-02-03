@@ -32,8 +32,8 @@ List modKey3 = [KeyCode.TAB];
 ParagraphElement registerKeyCode = new ParagraphElement();
 
 void main() {
-  print(window.navigator.userAgent);
-  if (window.navigator.userAgent.contains(".NET")){
+  print([window.navigator.userAgent,window.navigator.userAgent.contains("NET")]);
+  if (window.navigator.userAgent.contains("NET")){
     modKey2 = [KeyCode.CTRL];
   }
 
