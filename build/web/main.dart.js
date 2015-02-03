@@ -7774,6 +7774,8 @@ var $$ = Object.create(null);
 ["", "main.dart", , F, {
   "^": "",
   main: [function() {
+    if (J.contains$1$asx(window.navigator.userAgent, "Explorer"))
+      $.modKey2 = [17];
     if ($.get$local().getItem("replaceLetter3") != null)
       $.replaceLetter = C.JsonCodec_null_null.decode$1($.get$local().getItem("replaceLetter3"));
     else
@@ -8159,8 +8161,8 @@ $$ = null;
   _ = W.Node;
   _.$isNode = TRUE;
   _.$isObject = TRUE;
-  P.Object.$isObject = TRUE;
   P.num.$isObject = TRUE;
+  P.Object.$isObject = TRUE;
   _ = P.Duration;
   _.$isDuration = TRUE;
   _.$isObject = TRUE;

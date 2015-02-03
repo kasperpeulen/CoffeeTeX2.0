@@ -32,6 +32,11 @@ List modKey3 = [KeyCode.TAB,KeyCode.CTRL];
 ParagraphElement registerKeyCode = new ParagraphElement();
 
 void main() {
+  if (window.navigator.userAgent.contains("Explorer")){
+    modKey2 = [KeyCode.CTRL];
+  }
+
+
   //load default letters, the first time
   if (local["replaceLetter3"] != null)
     replaceLetter = JSON.decode(local["replaceLetter3"]);
