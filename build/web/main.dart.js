@@ -918,13 +918,13 @@ var $$ = Object.create(null);
     return x == null || typeof x === "string" || typeof x === "number" || typeof x === "boolean";
   },
   startRootIsolate_closure: {
-    "^": "Closure:11;box_0,entry_1",
+    "^": "Closure:12;box_0,entry_1",
     call$0: function() {
       this.entry_1.call$1(this.box_0.args_0);
     }
   },
   startRootIsolate_closure0: {
-    "^": "Closure:11;box_0,entry_2",
+    "^": "Closure:12;box_0,entry_2",
     call$0: function() {
       this.entry_2.call$2(this.box_0.args_0, null);
     }
@@ -1244,7 +1244,7 @@ var $$ = Object.create(null);
     "^": "Object;"
   },
   IsolateNatives__processWorkerMessage_closure: {
-    "^": "Closure:11;entryPoint_0,args_1,message_2,isSpawnUri_3,startPaused_4,replyTo_5",
+    "^": "Closure:12;entryPoint_0,args_1,message_2,isSpawnUri_3,startPaused_4,replyTo_5",
     call$0: function() {
       H.IsolateNatives__startIsolate(this.entryPoint_0, this.args_1, this.message_2, this.isSpawnUri_3, this.startPaused_4, this.replyTo_5);
     }
@@ -1346,7 +1346,7 @@ var $$ = Object.create(null);
     $isCapability: true
   },
   _NativeJsSendPort_send_closure: {
-    "^": "Closure:11;box_0,this_1,shouldSerialize_2",
+    "^": "Closure:12;box_0,this_1,shouldSerialize_2",
     call$0: function() {
       var t1, t2;
       t1 = this.this_1._receivePort;
@@ -1593,7 +1593,7 @@ var $$ = Object.create(null);
     }
   },
   _Copier_visitMap_closure: {
-    "^": "Closure:12;box_0,this_1",
+    "^": "Closure:13;box_0,this_1",
     call$2: function(key, val) {
       var t1 = this.this_1;
       J.$indexSet$ax(this.box_0.copy_0, t1._dispatch$1(key), t1._dispatch$1(val));
@@ -2798,7 +2798,7 @@ var $$ = Object.create(null);
     }
   },
   unwrapException_saveStackTrace: {
-    "^": "Closure:13;ex_0",
+    "^": "Closure:14;ex_0",
     call$1: function(error) {
       if (!!J.getInterceptor(error).$isError)
         if (error.$thrownJsError == null)
@@ -2821,31 +2821,31 @@ var $$ = Object.create(null);
     }
   },
   invokeClosure_closure: {
-    "^": "Closure:11;closure_0",
+    "^": "Closure:12;closure_0",
     call$0: function() {
       return this.closure_0.call$0();
     }
   },
   invokeClosure_closure0: {
-    "^": "Closure:11;closure_1,arg1_2",
+    "^": "Closure:12;closure_1,arg1_2",
     call$0: function() {
       return this.closure_1.call$1(this.arg1_2);
     }
   },
   invokeClosure_closure1: {
-    "^": "Closure:11;closure_3,arg1_4,arg2_5",
+    "^": "Closure:12;closure_3,arg1_4,arg2_5",
     call$0: function() {
       return this.closure_3.call$2(this.arg1_4, this.arg2_5);
     }
   },
   invokeClosure_closure2: {
-    "^": "Closure:11;closure_6,arg1_7,arg2_8,arg3_9",
+    "^": "Closure:12;closure_6,arg1_7,arg2_8,arg3_9",
     call$0: function() {
       return this.closure_6.call$3(this.arg1_7, this.arg2_8, this.arg3_9);
     }
   },
   invokeClosure_closure3: {
-    "^": "Closure:11;closure_10,arg1_11,arg2_12,arg3_13,arg4_14",
+    "^": "Closure:12;closure_10,arg1_11,arg2_12,arg3_13,arg4_14",
     call$0: function() {
       return this.closure_10.call$4(this.arg1_11, this.arg2_12, this.arg3_13, this.arg4_14);
     }
@@ -3031,13 +3031,13 @@ var $$ = Object.create(null);
     $isDynamicRuntimeType: true
   },
   initHooks_closure: {
-    "^": "Closure:13;getTag_0",
+    "^": "Closure:14;getTag_0",
     call$1: function(o) {
       return this.getTag_0(o);
     }
   },
   initHooks_closure0: {
-    "^": "Closure:14;getUnknownTag_1",
+    "^": "Closure:15;getUnknownTag_1",
     call$2: function(o, tag) {
       return this.getUnknownTag_1(o, tag);
     }
@@ -3483,7 +3483,7 @@ var $$ = Object.create(null);
     P._scheduleAsyncCallback(f);
   },
   _AsyncRun__initializeScheduleImmediate_internalCallback: {
-    "^": "Closure:13;box_0",
+    "^": "Closure:14;box_0",
     call$1: function(_) {
       var t1, f;
       H.leaveJsAsync();
@@ -3494,7 +3494,7 @@ var $$ = Object.create(null);
     }
   },
   _AsyncRun__initializeScheduleImmediate_closure: {
-    "^": "Closure:15;box_0,div_1,span_2",
+    "^": "Closure:16;box_0,div_1,span_2",
     call$1: function(callback) {
       var t1, t2;
       ++init.globalState.topEventLoop._activeJsAsyncCount;
@@ -3505,14 +3505,14 @@ var $$ = Object.create(null);
     }
   },
   _AsyncRun__scheduleImmediateJsOverride_internalCallback: {
-    "^": "Closure:11;callback_0",
+    "^": "Closure:12;callback_0",
     call$0: function() {
       H.leaveJsAsync();
       this.callback_0.call$0();
     }
   },
   _AsyncRun__scheduleImmediateWithSetImmediate_internalCallback: {
-    "^": "Closure:11;callback_0",
+    "^": "Closure:12;callback_0",
     call$0: function() {
       H.leaveJsAsync();
       this.callback_0.call$0();
@@ -3659,7 +3659,7 @@ var $$ = Object.create(null);
       P._Future__propagateToListeners(this, listeners);
     }, function(error) {
       return this._completeError$2(error, null);
-    }, "_completeError$1", "call$2", "call$1", "get$_completeError", 2, 2, 16, 17],
+    }, "_completeError$1", "call$2", "call$1", "get$_completeError", 2, 2, 17, 18],
     $is_Future: true,
     $isFuture: true,
     static: {"^": "_Future__INCOMPLETE,_Future__PENDING_COMPLETE,_Future__CHAINED,_Future__VALUE,_Future__ERROR", _Future__chainForeignFuture: function(source, target) {
@@ -3779,19 +3779,19 @@ var $$ = Object.create(null);
       }}
   },
   _Future__addListener_closure: {
-    "^": "Closure:11;this_0,listener_1",
+    "^": "Closure:12;this_0,listener_1",
     call$0: function() {
       P._Future__propagateToListeners(this.this_0, this.listener_1);
     }
   },
   _Future__chainForeignFuture_closure: {
-    "^": "Closure:13;target_0",
+    "^": "Closure:14;target_0",
     call$1: function(value) {
       this.target_0._completeWithValue$1(value);
     }
   },
   _Future__chainForeignFuture_closure0: {
-    "^": "Closure:18;target_1",
+    "^": "Closure:19;target_1",
     call$2: function(error, stackTrace) {
       this.target_1._completeError$2(error, stackTrace);
     },
@@ -3800,7 +3800,7 @@ var $$ = Object.create(null);
     }
   },
   _Future__propagateToListeners_handleValueCallback: {
-    "^": "Closure:19;box_1,listener_3,sourceValue_4,zone_5",
+    "^": "Closure:20;box_1,listener_3,sourceValue_4,zone_5",
     call$0: function() {
       var e, s, exception, t1;
       try {
@@ -3914,13 +3914,13 @@ var $$ = Object.create(null);
     }
   },
   _Future__propagateToListeners_handleWhenCompleteCallback_closure: {
-    "^": "Closure:13;box_2,result_11",
+    "^": "Closure:14;box_2,result_11",
     call$1: function(ignored) {
       P._Future__propagateToListeners(this.box_2.source_4, new P._FutureListener(null, this.result_11, 0, null, null));
     }
   },
   _Future__propagateToListeners_handleWhenCompleteCallback_closure0: {
-    "^": "Closure:18;box_0,result_12",
+    "^": "Closure:19;box_0,result_12",
     call$2: function(error, stackTrace) {
       var t1, completeResult;
       t1 = this.box_0;
@@ -3972,30 +3972,30 @@ var $$ = Object.create(null);
     }
   },
   Stream_forEach__closure: {
-    "^": "Closure:11;action_4,element_5",
+    "^": "Closure:12;action_4,element_5",
     call$0: function() {
       return this.action_4.call$1(this.element_5);
     }
   },
   Stream_forEach__closure0: {
-    "^": "Closure:13;",
+    "^": "Closure:14;",
     call$1: function(_) {
     }
   },
   Stream_forEach_closure0: {
-    "^": "Closure:11;future_6",
+    "^": "Closure:12;future_6",
     call$0: function() {
       this.future_6._complete$1(null);
     }
   },
   Stream_length_closure: {
-    "^": "Closure:13;box_0",
+    "^": "Closure:14;box_0",
     call$1: function(_) {
       ++this.box_0.count_0;
     }
   },
   Stream_length_closure0: {
-    "^": "Closure:11;box_0,future_1",
+    "^": "Closure:12;box_0,future_1",
     call$0: function() {
       this.future_1._complete$1(this.box_0.count_0);
     }
@@ -4010,13 +4010,13 @@ var $$ = Object.create(null);
     "^": "Object;"
   },
   _cancelAndError_closure: {
-    "^": "Closure:11;future_0,error_1,stackTrace_2",
+    "^": "Closure:12;future_0,error_1,stackTrace_2",
     call$0: function() {
       return this.future_0._completeError$2(this.error_1, this.stackTrace_2);
     }
   },
   _cancelAndErrorClosure_closure: {
-    "^": "Closure:20;subscription_0,future_1",
+    "^": "Closure:21;subscription_0,future_1",
     call$2: function(error, stackTrace) {
       return P._cancelAndError(this.subscription_0, this.future_1, error, stackTrace);
     }
@@ -4032,7 +4032,7 @@ var $$ = Object.create(null);
     "^": "Object;"
   },
   _rootHandleUncaughtError_closure: {
-    "^": "Closure:11;error_0,stackTrace_1",
+    "^": "Closure:12;error_0,stackTrace_1",
     call$0: function() {
       throw H.wrapException(P._UncaughtAsyncError$(this.error_0, this.stackTrace_1));
     }
@@ -4109,25 +4109,25 @@ var $$ = Object.create(null);
     static: {"^": "_RootZone__rootMap,_RootZone__rootDelegate"}
   },
   _RootZone_bindCallback_closure: {
-    "^": "Closure:11;this_0,f_1",
+    "^": "Closure:12;this_0,f_1",
     call$0: function() {
       return this.this_0.runGuarded$1(this.f_1);
     }
   },
   _RootZone_bindCallback_closure0: {
-    "^": "Closure:11;this_2,f_3",
+    "^": "Closure:12;this_2,f_3",
     call$0: function() {
       return this.this_2.run$1(this.f_3);
     }
   },
   _RootZone_bindUnaryCallback_closure: {
-    "^": "Closure:13;this_0,f_1",
+    "^": "Closure:14;this_0,f_1",
     call$1: function(arg) {
       return this.this_0.runUnaryGuarded$2(this.f_1, arg);
     }
   },
   _RootZone_bindUnaryCallback_closure0: {
-    "^": "Closure:13;this_2,f_3",
+    "^": "Closure:14;this_2,f_3",
     call$1: function(arg) {
       return this.this_2.runUnary$2(this.f_3, arg);
     }
@@ -4496,7 +4496,7 @@ var $$ = Object.create(null);
       }}
   },
   _HashMap_values_closure: {
-    "^": "Closure:13;this_0",
+    "^": "Closure:14;this_0",
     call$1: function(each) {
       return this.this_0.$index(0, each);
     }
@@ -4759,7 +4759,7 @@ var $$ = Object.create(null);
       }}
   },
   _LinkedHashMap_values_closure: {
-    "^": "Closure:13;this_0",
+    "^": "Closure:14;this_0",
     call$1: function(each) {
       return this.this_0.$index(0, each);
     }
@@ -5177,7 +5177,7 @@ var $$ = Object.create(null);
     $asList: null
   },
   Maps_mapToString_closure: {
-    "^": "Closure:12;box_0,result_1",
+    "^": "Closure:13;box_0,result_1",
     call$2: function(k, v) {
       var t1 = this.box_0;
       if (!t1.first_0)
@@ -5505,7 +5505,7 @@ var $$ = Object.create(null);
     }
   },
   _JsonMap_values_closure: {
-    "^": "Closure:13;this_0",
+    "^": "Closure:14;this_0",
     call$1: function(each) {
       return this.this_0.$index(0, each);
     }
@@ -5722,7 +5722,7 @@ var $$ = Object.create(null);
     }
   },
   _JsonStringifier_writeMap_closure: {
-    "^": "Closure:21;box_0,this_1",
+    "^": "Closure:22;box_0,this_1",
     call$2: function(key, value) {
       var t1, t2;
       t1 = this.this_1;
@@ -5798,7 +5798,7 @@ var $$ = Object.create(null);
     H.printString(line);
   },
   NoSuchMethodError_toString_closure: {
-    "^": "Closure:22;box_0",
+    "^": "Closure:23;box_0",
     call$2: function(key, value) {
       var t1 = this.box_0;
       if (t1.i_1 > 0)
@@ -5856,7 +5856,7 @@ var $$ = Object.create(null);
       }}
   },
   Duration_toString_sixDigits: {
-    "^": "Closure:23;",
+    "^": "Closure:24;",
     call$1: function(n) {
       if (n >= 100000)
         return "" + n;
@@ -5872,7 +5872,7 @@ var $$ = Object.create(null);
     }
   },
   Duration_toString_twoDigits: {
-    "^": "Closure:23;",
+    "^": "Closure:24;",
     call$1: function(n) {
       if (n >= 10)
         return "" + n;
@@ -6333,6 +6333,9 @@ var $$ = Object.create(null);
     toString$0: function(receiver) {
       return receiver.localName;
     },
+    get$onClick: function(receiver) {
+      return H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(receiver, "click", false), [null]);
+    },
     get$onKeyDown: function(receiver) {
       return H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(receiver, "keydown", false), [null]);
     },
@@ -6361,6 +6364,9 @@ var $$ = Object.create(null);
     "^": "Interceptor;",
     get$target: function(receiver) {
       return W._convertNativeToDart_EventTarget(receiver.target);
+    },
+    preventDefault$0: function(receiver) {
+      return receiver.preventDefault();
     },
     "%": "AnimationPlayerEvent|ApplicationCacheErrorEvent|AudioProcessingEvent|AutocompleteErrorEvent|BeforeUnloadEvent|CloseEvent|CustomEvent|DeviceLightEvent|DeviceMotionEvent|DeviceOrientationEvent|FetchEvent|FontFaceSetLoadEvent|GamepadEvent|HashChangeEvent|IDBVersionChangeEvent|InstallEvent|InstallPhaseEvent|MIDIConnectionEvent|MIDIMessageEvent|MediaKeyEvent|MediaKeyMessageEvent|MediaKeyNeededEvent|MediaStreamEvent|MediaStreamTrackEvent|MessageEvent|MutationEvent|OfflineAudioCompletionEvent|OverflowEvent|PageTransitionEvent|PopStateEvent|ProgressEvent|PushEvent|RTCDTMFToneChangeEvent|RTCDataChannelEvent|RTCIceCandidateEvent|RelatedEvent|ResourceProgressEvent|SecurityPolicyViolationEvent|SpeechRecognitionEvent|SpeechSynthesisEvent|StorageEvent|TrackEvent|TransitionEvent|WebGLContextEvent|WebKitAnimationEvent|WebKitTransitionEvent|XMLHttpRequestProgressEvent;ClipboardEvent|Event|InputEvent"
   },
@@ -6408,7 +6414,7 @@ var $$ = Object.create(null);
     "%": "HTMLCollection|HTMLFormControlsCollection|HTMLOptionsCollection"
   },
   InputElement: {
-    "^": "HtmlElement;selectionEnd=,selectionStart%,type},value%",
+    "^": "HtmlElement;placeholder},selectionEnd=,selectionStart%,type},value%",
     select$0: function(receiver) {
       return receiver.select();
     },
@@ -6606,7 +6612,7 @@ var $$ = Object.create(null);
     "%": "HTMLStyleElement"
   },
   TextAreaElement: {
-    "^": "HtmlElement;selectionEnd=,selectionStart%,value%",
+    "^": "HtmlElement;placeholder},selectionEnd=,selectionStart%,value%",
     select$0: function(receiver) {
       return receiver.select();
     },
@@ -6941,13 +6947,13 @@ var $$ = Object.create(null);
     }
   },
   Storage_keys_closure: {
-    "^": "Closure:12;keys_0",
+    "^": "Closure:13;keys_0",
     call$2: function(k, v) {
       return this.keys_0.push(k);
     }
   },
   Storage_values_closure: {
-    "^": "Closure:12;values_0",
+    "^": "Closure:13;values_0",
     call$2: function(k, v) {
       return this.values_0.push(v);
     }
@@ -7216,6 +7222,9 @@ var $$ = Object.create(null);
     },
     get$children: function(receiver) {
       return H.setRuntimeTypeInfo(new P.FilteredElementList(receiver, new W._ChildNodeListLazy(receiver)), [W.Element]);
+    },
+    get$onClick: function(receiver) {
+      return H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(receiver, "click", false), [null]);
     },
     get$onMouseEnter: function(receiver) {
       return H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(receiver, "mouseenter", false), [null]);
@@ -7695,7 +7704,7 @@ var $$ = Object.create(null);
     }
   },
   CssClassSetImpl_add_closure: {
-    "^": "Closure:13;value_0",
+    "^": "Closure:14;value_0",
     call$1: function(s) {
       return s.add$1(0, this.value_0);
     }
@@ -7759,13 +7768,13 @@ var $$ = Object.create(null);
     }
   },
   FilteredElementList__filtered_closure: {
-    "^": "Closure:13;",
+    "^": "Closure:14;",
     call$1: function(n) {
       return !!J.getInterceptor(n).$isElement;
     }
   },
   FilteredElementList_removeRange_closure: {
-    "^": "Closure:13;",
+    "^": "Closure:14;",
     call$1: function(el) {
       return J.remove$0$ax(el);
     }
@@ -7787,6 +7796,8 @@ var $$ = Object.create(null);
     t1 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.onKeyDown$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)]);
     t1._tryResume$0();
     $.listenBody = t1;
+    t1 = J.get$onClick$x($.get$settings());
+    H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(F.settingsClicked$closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
   }, "call$0", "main$closure", 0, 0, 2],
   onKeyDown: [function(keyEvent) {
     var keyCode, t1, t2, t3;
@@ -7796,8 +7807,10 @@ var $$ = Object.create(null);
     if (J.get$selectionEnd$x($.get$textarea()) === 0)
       return;
     if ($.popup == null) {
-      if (C.JSArray_methods.contains$1($.get$modKey(), keyCode) || C.JSArray_methods.contains$1($.get$modKey2(), keyCode))
+      if (C.JSArray_methods.contains$1($.get$modKey(), keyCode) || C.JSArray_methods.contains$1($.get$modKey2(), keyCode)) {
+        keyEvent.preventDefault();
         F.createPopUp();
+      }
     } else {
       if (C.JSArray_methods.contains$1($.get$modKey(), keyCode) || C.JSArray_methods.contains$1($.get$modKey3(), keyCode) || keyCode === 39 || keyCode === 40) {
         keyEvent.preventDefault();
@@ -7934,13 +7947,13 @@ var $$ = Object.create(null);
   replaceChar: function() {
     var t1, t2, t3, newChar, dCaretPos, newText, i, newCaretPos;
     t1 = J.$index$asx($.newChars, $.selectedCharIndex);
-    t2 = $.newChars;
-    t3 = $.selectedCharIndex;
+    t2 = $.selectedCharIndex;
+    t3 = $.newChars;
     if (typeof t1 === "string") {
-      newChar = J.$index$asx(t2, t3);
+      newChar = J.$index$asx(t3, t2);
       dCaretPos = "0";
     } else {
-      newChar = J.$index$asx(J.$index$asx(t2, t3), 0);
+      newChar = J.$index$asx(J.$index$asx(t3, t2), 0);
       dCaretPos = J.$index$asx(J.$index$asx($.newChars, $.selectedCharIndex), 1);
     }
     if ($.get$replaceLetterAfter().containsKey$1(0, newChar))
@@ -8054,23 +8067,23 @@ var $$ = Object.create(null);
       $.newChars = J.$index$asx($.replaceLetter, $.oldChars);
       J.set$text$x($.selected, updatedChar);
     } else if (J.get$classes$x($.selected).readClasses$0().contains$1(0, "new")) {
-      t1 = $.replaceLetter;
-      t2 = $.oldChars;
+      t1 = $.oldChars;
+      t2 = $.replaceLetter;
       if (i === 0) {
-        J.add$1$ax(J.$index$asx(t1, t2), [updatedChar, "0"]);
+        J.add$1$ax(J.$index$asx(t2, t1), [updatedChar, "0"]);
         J.set$text$x($.selected, updatedChar);
       } else
-        J.add$1$ax(J.$index$asx(t1, t2), ["", updatedChar]);
+        J.add$1$ax(J.$index$asx(t2, t1), ["", updatedChar]);
       J.get$classes$x($.selected).remove$1(0, "new");
     } else {
       t1 = J.$index$asx(J.$index$asx($.replaceLetter, $.oldChars), $.selectedCharIndex);
-      t2 = $.replaceLetter;
-      t3 = $.oldChars;
+      t2 = $.oldChars;
+      t3 = $.replaceLetter;
       if (typeof t1 === "string") {
-        J.$indexSet$ax(J.$index$asx(t2, t3), $.selectedCharIndex, updatedChar);
+        J.$indexSet$ax(J.$index$asx(t3, t2), $.selectedCharIndex, updatedChar);
         J.set$text$x($.selected, updatedChar);
       } else {
-        J.$indexSet$ax(J.$index$asx(J.$index$asx(t2, t3), $.selectedCharIndex), i, updatedChar);
+        J.$indexSet$ax(J.$index$asx(J.$index$asx(t3, t2), $.selectedCharIndex), i, updatedChar);
         J.set$text$x($.selected, J.$index$asx(J.$index$asx(J.$index$asx($.replaceLetter, $.oldChars), $.selectedCharIndex), 0));
       }
     }
@@ -8136,11 +8149,51 @@ var $$ = Object.create(null);
     $.lastCharIndex = $.selectedCharIndex;
     F.selectCharIndex(J.get$length$asx($.newChars));
   }, "call$1", "addNewChar$closure", 2, 0, 9],
+  settingsClicked: [function(e) {
+    var t1, t2, t3, input;
+    t1 = document.createElement("div", null);
+    t1.id = "popup";
+    J.set$display$x(t1.style, "block");
+    t2 = t1.style;
+    t3 = $.get$settings();
+    t3.toString;
+    J.set$top$x(t2, C.JSInt_methods.toString$0(C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(t3.offsetTop)) - 3) + "px");
+    t3 = t1.style;
+    t2 = $.get$settings();
+    t2.toString;
+    J.set$left$x(t3, C.JSInt_methods.toString$0(C.JSNumber_methods.toInt$0(C.JSNumber_methods.roundToDouble$0(t2.offsetLeft))) + "px");
+    $.popup = t1;
+    document.body.appendChild(t1);
+    t1 = document.createElement("ul", null);
+    t1.id = "char_list";
+    $.char_list = t1;
+    input = W.InputElement_InputElement(null);
+    t1 = J.getInterceptor$x(input);
+    t1.set$type(input, "text");
+    input.id = "changeChar";
+    J.set$width$x(input.style, "180px");
+    t1.set$placeholder(input, "Press new modifier key");
+    $.popup.appendChild(input);
+    t1.select$0(input);
+    t1.setSelectionRange$2(input, 0, 0);
+    t1 = t1.get$onKeyDown(input);
+    H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(new F.settingsClicked_closure()), t1._useCapture), [H.getTypeArgumentByIndex(t1, 0)])._tryResume$0();
+  }, "call$1", "settingsClicked$closure", 2, 0, 11],
   createNewCharInput_closure: {
-    "^": "Closure:13;",
+    "^": "Closure:14;",
     call$1: function(keyDown) {
       if (J.get$keyCode$x(keyDown) === 9)
         keyDown.preventDefault();
+    }
+  },
+  settingsClicked_closure: {
+    "^": "Closure:14;",
+    call$1: function(e) {
+      var t1 = J.getInterceptor$x(e);
+      t1.preventDefault$0(e);
+      $.modKey2 = [t1.get$keyCode(e)];
+      J.remove$0$ax($.popup);
+      $.popup = null;
     }
   }
 },
@@ -8174,11 +8227,11 @@ $$ = null;
   H.RawReceivePortImpl.$isObject = TRUE;
   H._IsolateEvent.$isObject = TRUE;
   H._IsolateContext.$isObject = TRUE;
-  _ = P.Symbol;
-  _.$isSymbol = TRUE;
-  _.$isObject = TRUE;
   _ = P.bool;
   _.$isbool = TRUE;
+  _.$isObject = TRUE;
+  _ = P.Symbol;
+  _.$isSymbol = TRUE;
   _.$isObject = TRUE;
   _ = P.StackTrace;
   _.$isStackTrace = TRUE;
@@ -8388,6 +8441,9 @@ J.get$left$x = function(receiver) {
 };
 J.get$length$asx = function(receiver) {
   return J.getInterceptor$asx(receiver).get$length(receiver);
+};
+J.get$onClick$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$onClick(receiver);
 };
 J.get$onMouseEnter$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$onMouseEnter(receiver);
@@ -8758,6 +8814,9 @@ Isolate.$lazy($, "properties", "properties", "get$properties", function() {
 Isolate.$lazy($, "textarea", "textarea", "get$textarea", function() {
   return document.querySelector("#ct_editor");
 });
+Isolate.$lazy($, "settings", "settings", "get$settings", function() {
+  return document.querySelector("#settings");
+});
 Isolate.$lazy($, "local", "local", "get$local", function() {
   return window.localStorage;
 });
@@ -8793,6 +8852,7 @@ init.metadata = [{func: "dynamic__String", args: [P.String]},
 {func: "void__KeyEvent", void: true, args: [W.KeyEvent]},
 {func: "dynamic__MouseEvent", args: [W.MouseEvent]},
 {func: "dynamic__KeyboardEvent", args: [W.KeyboardEvent]},
+{func: "dynamic__KeyEvent", args: [W.KeyEvent]},
 {func: "args0"},
 {func: "args2", args: [null, null]},
 {func: "args1", args: [null]},

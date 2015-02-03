@@ -7,6 +7,7 @@ import 'getCaretXYFromTextArea.dart';
 import 'replaceLetter.dart';
 
 TextAreaElement textarea = querySelector("#ct_editor");
+HtmlElement settings = querySelector("#settings");
 InputElement newCharInput;
 DivElement popup ;
 UListElement char_list;
@@ -45,6 +46,7 @@ void main() {
 
   //register keyDown on Body
   listenBody = document.body.onKeyDown.listen(onKeyDown);
+  settings.onClick.listen(settingsClicked);
 
 }
 
@@ -61,6 +63,7 @@ void onKeyDown(KeyEvent keyEvent) {
   //if no popup exists
   if (popup == null){
     if (modKey.contains(keyCode) || modKey2.contains(keyCode) ){
+      keyEvent.preventDefault();
       createPopUp();
     }
   }
@@ -383,4 +386,32 @@ removeSelectedChar(){
     selected.remove();
     selectCharIndex(selectedCharIndex);
   }
+}
+
+settingsClicked(KeyEvent e) {
+  popup = new DivElement()
+    ..id = "popup"
+    ..style.display = "block"
+    ..style.top = (settings.offsetTop -3).toString() + "px"
+    ..style.left = settings.offsetLeft.toString() + "px";
+  document.body.append(popup);
+  char_list = new UListElement()
+    ..id = "char_list";
+
+
+  InputElement input = new InputElement()
+    ..type = "text"
+    ..id = "changeChar"
+    ..style.width = "180px"
+    ..placeholder = "Press new modifier key";
+  popup.append(input);
+  input
+    ..select()
+    ..setSelectionRange(0, 0)
+    ..onKeyDown.listen((e) {
+    e.preventDefault();
+    modKey2 = [e.keyCode];
+    popup.remove();
+    popup = null;
+  });
 }
