@@ -7774,6 +7774,7 @@ var $$ = Object.create(null);
 ["", "main.dart", , F, {
   "^": "",
   main: [function() {
+    P.print(window.navigator.userAgent);
     if (J.contains$1$asx(window.navigator.userAgent, "Explorer"))
       $.modKey2 = [17];
     if ($.get$local().getItem("replaceLetter3") != null)
@@ -8767,7 +8768,7 @@ Isolate.$lazy($, "modKey2", "modKey2", "get$modKey2", function() {
   return [18];
 });
 Isolate.$lazy($, "modKey3", "modKey3", "get$modKey3", function() {
-  return [9, 17];
+  return [9];
 });
 Isolate.$lazy($, "registerKeyCode", "registerKeyCode", "get$registerKeyCode", function() {
   return document.createElement("p", null);

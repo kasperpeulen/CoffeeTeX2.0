@@ -27,15 +27,15 @@ StreamSubscription listenBody;
 
 List modKey = [KeyCode.WIN_KEY_RIGHT,KeyCode.CONTEXT_MENU];
 List modKey2 = [KeyCode.ALT];
-List modKey3 = [KeyCode.TAB,KeyCode.CTRL];
+List modKey3 = [KeyCode.TAB];
 
 ParagraphElement registerKeyCode = new ParagraphElement();
 
 void main() {
+  print(window.navigator.userAgent);
   if (window.navigator.userAgent.contains("Explorer")){
     modKey2 = [KeyCode.CTRL];
   }
-
 
   //load default letters, the first time
   if (local["replaceLetter3"] != null)
