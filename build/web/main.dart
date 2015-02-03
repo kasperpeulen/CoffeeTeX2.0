@@ -39,8 +39,8 @@ void main() {
   }
 
   //load default letters, the first time
-  if (local["replaceLetter3"] != null)
-    replaceLetter = JSON.decode(local["replaceLetter3"]);
+  if (local["replaceLetter4"] != null)
+    replaceLetter = JSON.decode(local["replaceLetter4"]);
   else
     replaceLetter = replaceLetterDefault;
 
@@ -327,7 +327,7 @@ updateChar() {
 
   }
   //update to localstorage;
-  local["replaceLetter3"] = JSON.encode(replaceLetter);
+  local["replaceLetter4"] = JSON.encode(replaceLetter);
   //remove input
   newCharInput.remove();
   listenBody.resume();
