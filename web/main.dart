@@ -253,8 +253,7 @@ createNewCharInput(String id){
   }
 
   //create input to type new chars
-  newCharInput = new InputElement();
-  newCharInput
+  newCharInput = new InputElement()
     ..id = id
     ..type = "text"
     ..value = value
