@@ -1,9 +1,6 @@
-name: 'CoffeeTeX'
+name: untitled19
 version: 0.0.1
-description: >
-  LaTeX Editor
-#author: Kasper Peulen kasperpeulen@gmail.com
-#homepage: https://www.example.com
+description: My untitled19 Dart Application.
 environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:

@@ -50,19 +50,27 @@ textarea {
     height:500px;
 }
 
-#char_list {
-}
-
-#char_list li {
-
-}
 
 #popup {
-    display: none;
     position: absolute;
 }
 
-#char_list {
+#settings {
+    position: absolute;
+    margin:0px;
+    list-style-type: none;
+    -moz-box-shadow: 0px 1px 3px 1px lightgray;
+    -webkit-box-shadow: 0px 1px 3px 1px lightgray;
+    box-shadow: 0px 2px 3px 0px lightgrey;
+    padding: 2px;
+    background: #FEFFFF;
+    font-size: 12pt;
+    border: 1px #C1D7FD solid;
+    list-style-type: none;
+    border-radius: 5px;
+}
+
+#replaceList {
     margin:0px;
     list-style-type: none;
     -moz-box-shadow: 0px 1px 3px 1px lightgray;
@@ -77,11 +85,11 @@ textarea {
     border-radius: 5px;
 
 }
-#char_list  li {
+#replaceList li {
     margin:0px;
     padding:0px;
     display: inline-block;
-    //text-align: left !important;
+//text-align: left !important;
     list-style-type: none;
     position: relative;
     line-height: 21px;
@@ -94,25 +102,54 @@ textarea {
     text-align: center;
     min-width: 24px;
 }
-#char_list p{
+#replaceList >li > span:focus {
+    margin:3px;
+}
+#replaceList p{
     border: 1px #B9D6F0 solid;
     background: #E5F1FE;
     color: #0A7ED0;
 }
-#char_list .selected {
+#replaceList .selected {
     border: 1px #B9D6F0 solid;
     background: #E5F1FE;
     color: #0A7ED0;
 }
-textarea, input { outline: none; border: 1px solid black}
 
-#changeChar,#changeCaret {
-    width: 100px;
-    font-size: 16px;
-    font-family: LMMath-bbfix;
+#addChar:hover {
+    border: 1px #B9D6F0 solid;
+    border-radius: 4px;
+    background: #E5F1FE;
+    color: #0A7ED0;
+
+}
+#addChar:hover::after {
+    content: '+';
 }
 
-#changeCaret {
-    background-color: #f5f5f5;
+
+#keyList {
+    display: table-row-group;
+}
+#keyList li {
+    margin:0px;
+    padding:0px;
+    display: inline-block;
+//text-align: left !important;
+    font-family: "Lucida Grande";
+    list-style-type: none;
+    position: relative;
+    line-height: 21px;
+    border: 1px white solid;
+    border-radius: 4px;
+    background: white;
+    color: #0A7ED0;
+    text-align: center;
+    border: 1px #B9D6F0 solid;
+    background: #E5F1FE;
+    color: #0A7ED0;
 }
 
+#saveButton {
+    float:right;
+}
